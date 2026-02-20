@@ -35,11 +35,14 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/consulting" element={<Consulting />} />
+            <Route path="/committees/philanthropy" element={<Philanthropy />} />
+            <Route path="/committees/consulting" element={<Consulting />} />
+            <Route path="/committees/policy" element={<Policy />} />
+            <Route path="/committees/expansion" element={<Chapters />} />
+            <Route path="/committees/outreach" element={<Outreach />} />
             <Route path="/committees" element={<Committees />} />
-            <Route path="/policy" element={<Policy />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/chapters" element={<Chapters />} />
+            <Route path="/newsletter" element={<Newsletter />} />
             <Route path="/opportunities" element={<Opportunities />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
