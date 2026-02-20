@@ -350,6 +350,13 @@ const consultingFields = [
   { key: "icon", label: "Icon", type: "select", options: ["target", "settings", "bar-chart", "shield", "cpu", "search"] },
 ];
 
+const newsletterFields = [
+  { key: "title", label: "Title", type: "text" },
+  { key: "date", label: "Date", type: "text", placeholder: "YYYY-MM-DD" },
+  { key: "preview", label: "Preview Text", type: "textarea" },
+  { key: "link", label: "Link/Download URL", type: "text" },
+];
+
 export default function Admin() {
   const [token, setToken] = useState(localStorage.getItem("admin_token"));
 
