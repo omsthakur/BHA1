@@ -36,10 +36,15 @@ export default function Home() {
 
       {/* Hero Section */}
       <section data-testid="hero-section" className="bg-[#0F172A] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 right-20 w-96 h-96 rounded-full border border-white/20" />
-          <div className="absolute bottom-10 left-10 w-64 h-64 rounded-full border border-white/10" />
+        {/* Blurred Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt=""
+            className="w-full h-full object-cover opacity-15 blur-sm"
+          />
         </div>
+        <div className="absolute inset-0 bg-[#0F172A]/80" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
