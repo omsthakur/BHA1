@@ -101,6 +101,7 @@ class TexasBHAAPITester:
             ("Opportunities", "opportunities", 200),
             ("Announcements", "announcements", 200),
             ("Consulting Services", "consulting-services", 200),
+            ("Newsletters", "newsletters", 200),
         ]
         
         for name, endpoint, expected_status in endpoints:
