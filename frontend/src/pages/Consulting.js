@@ -77,6 +77,12 @@ export default function Consulting() {
         </div>
       </section>
 
+      {/* Photo Banner */}
+      <section className="relative h-48 md:h-56 overflow-hidden">
+        <img src="https://images.pexels.com/photos/7108284/pexels-photo-7108284.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Office" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-[#0F172A]/40" />
+      </section>
+
       {/* Completed Projects */}
       <section data-testid="completed-projects" className="py-20 bg-slate-50">
         <div className="container-main">
