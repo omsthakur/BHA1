@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Users, BookOpen, Lightbulb, ChevronRight, Megaphone } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/opg518km_IMG_2829.png";
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/ipzsi01e_image.png";
 
 export default function Home() {
   const [committees, setCommittees] = useState([]);
