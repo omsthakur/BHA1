@@ -258,7 +258,7 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Link to="/chapters" data-testid="cta-chapters-btn">
+                <Link to="/committees/expansion" data-testid="cta-chapters-btn">
                   <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-3 text-sm">
                     Start a Chapter
                   </Button>
