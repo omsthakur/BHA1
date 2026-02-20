@@ -94,7 +94,7 @@ export default function Gallery() {
 
       {/* Lightbox Dialog */}
       <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
-        <DialogContent className="max-w-4xl p-0 bg-black border-none overflow-hidden">
+        <DialogContent className="max-w-4xl p-0 bg-black border-none overflow-hidden [&>button]:hidden">
           {selectedImage && (
             <div className="relative">
               <img
@@ -112,10 +112,10 @@ export default function Gallery() {
               </div>
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/70 flex items-center justify-center text-white hover:bg-black/90 transition-colors cursor-pointer"
                 data-testid="lightbox-close"
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </button>
             </div>
           )}
