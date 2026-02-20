@@ -411,6 +411,35 @@ async def delete_consulting_service(item_id: str, request: Request):
     await db.consulting_services.delete_one({"id": item_id})
     return {"success": True}
 
+# --- Newsletters ---
+@api_router.post("/admin/newsletters")
+async def create_newsletter(data: Newsletter, request: Request):
+    await get_current_admin(request)
+    doc = data.model_dump()
+    await db.newsletters.insert_one(doc)
+    return await db.newsletters.find_one({"id": doc["id"]}, {"_id": 0})
+
+@api_router.put("/admin/newsletters/{item_id}")
+async def update_newsletter(item_id: str, request: Request):
+    await get_current_admin(request)
+    body = await request.json()
+    body.pop("_id", None)
+    body.pop("id", None)
+    await db.newsletters.update_one({"id": item_id}, {"$set": body})
+    return await db.newsletters.find_one({"id": item_id}, {"_id": 0})
+
+@api_router.delete("/admin/newsletters/{item_id}")
+async def delete_newsletter(item_id: str, request: Request):
+    await get_current_admin(request)
+    await db.newsletters.delete_one({"id": item_id})
+    return {"success": True}
+
+@api_router.get("/admin/subscribers")
+async def get_subscribers(request: Request):
+    await get_current_admin(request)
+    items = await db.newsletter_subscribers.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    return items
+
 # --- Admin Contacts ---
 @api_router.get("/admin/contacts")
 async def get_contacts(request: Request):
