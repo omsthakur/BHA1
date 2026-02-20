@@ -114,6 +114,21 @@ class ConsultingService(BaseModel):
     icon: str = ""
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
+class Newsletter(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    date: str = ""
+    preview: str = ""
+    content: str = ""
+    link: str = ""
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+class NewsletterSubscriber(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
 # ==================== AUTH HELPERS ====================
 
 async def get_current_admin(request: Request):
