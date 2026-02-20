@@ -25,11 +25,27 @@ export default function Policy() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Research</Badge>
+          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Committee</Badge>
           <h1 data-testid="policy-page-title" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Policy & Research
           </h1>
           <p>Evidence-based research and policy analysis driving meaningful change in Texas healthcare.</p>
+        </div>
+      </section>
+
+      {/* Research Team Photo */}
+      <section className="py-12 bg-white">
+        <div className="container-main">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Our Research Team</h2>
+              <p className="text-slate-500 mt-3 leading-relaxed">The Policy & Research Committee conducts rigorous analysis of healthcare policy issues affecting Texas communities. Our research teams work with faculty advisors, industry experts, and government stakeholders to produce impactful policy briefs.</p>
+              <p className="text-xs text-slate-400 mt-4 italic">Upload your team photo via the admin panel</p>
+            </div>
+            <div className="rounded-2xl overflow-hidden aspect-[16/10] bg-slate-100">
+              <img src="https://images.pexels.com/photos/8761541/pexels-photo-8761541.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Research team" className="w-full h-full object-cover" />
+            </div>
+          </div>
         </div>
       </section>
 
