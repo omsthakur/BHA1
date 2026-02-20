@@ -179,6 +179,15 @@ class TexasBHAAPITester:
             auth_required=True
         )
 
+        # Test admin subscribers view
+        self.run_test(
+            "Admin Newsletter Subscribers View",
+            "GET",
+            "admin/subscribers",
+            200,
+            auth_required=True
+        )
+
     def test_admin_crud_committees(self):
         """Test admin CRUD operations for committees"""
         if not self.token:
