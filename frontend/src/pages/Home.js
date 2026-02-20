@@ -197,7 +197,7 @@ export default function Home() {
                     <Users className="h-4 w-4 text-slate-400" />
                     <span className="text-xs text-slate-400">{committee.leadership?.join(", ")}</span>
                   </div>
-                  <Link to="/committees" data-testid={`committee-learn-more-${idx}`}>
+                  <Link to="/committees/consulting" data-testid={`committee-learn-more-${idx}`}>
                     <Button variant="ghost" size="sm" className="mt-3 text-[#0F172A] hover:text-[#0F172A] hover:bg-slate-50 p-0 h-auto font-medium text-sm">
                       Learn More <ChevronRight className="ml-1 h-3 w-3" />
                     </Button>
