@@ -80,16 +80,18 @@ export default function Home() {
             </div>
             <div className="hidden lg:flex justify-center animate-fade-in-up-delay-2">
               <div className="relative">
-                <div className="w-80 h-80 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-                  <img src={LOGO_URL} alt="Texas BHA Logo" className="w-56 h-56 rounded-full object-cover" />
+                <div className="w-80 h-80 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">
+                  <div className="w-56 h-56 rounded-full bg-[#0F172A] p-6 flex items-center justify-center shadow-2xl">
+                    <img src={LOGO_URL} alt="Texas BHA Logo" className="w-full h-full object-contain" />
+                  </div>
                 </div>
-                <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-amber-500/20 flex items-center justify-center">
+                <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-amber-500/20 backdrop-blur-sm flex items-center justify-center">
                   <Users className="h-8 w-8 text-amber-400" />
                 </div>
-                <div className="absolute -bottom-2 -left-6 w-20 h-20 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                <div className="absolute -bottom-2 -left-6 w-20 h-20 rounded-2xl bg-blue-500/20 backdrop-blur-sm flex items-center justify-center">
                   <BookOpen className="h-8 w-8 text-blue-400" />
                 </div>
-                <div className="absolute top-1/2 -right-8 w-16 h-16 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                <div className="absolute top-1/2 -right-8 w-16 h-16 rounded-xl bg-emerald-500/20 backdrop-blur-sm flex items-center justify-center">
                   <Lightbulb className="h-6 w-6 text-emerald-400" />
                 </div>
               </div>
