@@ -51,6 +51,24 @@ export default function Opportunities() {
         </div>
       </section>
 
+      {/* Photo Section */}
+      <section className="py-12 bg-white">
+        <div className="container-main">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=500",
+              "https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=500",
+              "https://images.pexels.com/photos/7413915/pexels-photo-7413915.jpeg?auto=compress&cs=tinysrgb&w=500",
+            ].map((src, i) => (
+              <div key={i} className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative group">
+                <img src={src} alt={`Opportunity ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 text-center mt-3 italic">Upload your own team and event photos via the admin panel</p>
+        </div>
+      </section>
+
       {/* Philanthropy */}
       {philanthropy.length > 0 && (
         <section data-testid="philanthropy-section" className="py-20 bg-white">
