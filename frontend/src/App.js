@@ -12,6 +12,9 @@ import Chapters from "@/pages/Chapters";
 import Opportunities from "@/pages/Opportunities";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
+import Newsletter from "@/pages/Newsletter";
+import Philanthropy from "@/pages/committees/Philanthropy";
+import Outreach from "@/pages/committees/Outreach";
 
 function MainLayout() {
   return (
