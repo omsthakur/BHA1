@@ -1,0 +1,156 @@
+{
+  "brand_identity": {
+    "name": "Texas Business Healthcare Association",
+    "acronym": "Texas BHA",
+    "tone": "Professional, Ambitious, Academic, Trustworthy, Modern",
+    "target_audience": "Healthcare professionals, business students, university chapters",
+    "logo_url": "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/1b2ml5jj_tx_bha_logo.jpeg"
+  },
+  "theme": {
+    "mode": "light",
+    "strategy": "Executive Minimalist",
+    "description": "Clean white backgrounds with deep navy authority and subtle silver detailing. High contrast for readability, with gold accents for prestige."
+  },
+  "colors": {
+    "primary": "#0F172A",
+    "secondary": "#E2E8F0",
+    "accent": "#F59E0B",
+    "background": "#FFFFFF",
+    "text": "#0F172A",
+    "muted": "#64748B",
+    "success": "#10B981",
+    "border": "#E2E8F0",
+    "palette": {
+      "navy": {
+        "50": "#f8fafc",
+        "100": "#f1f5f9",
+        "200": "#e2e8f0",
+        "300": "#cbd5e1",
+        "400": "#94a3b8",
+        "500": "#64748b",
+        "600": "#475569",
+        "700": "#334155",
+        "800": "#1e293b",
+        "900": "#0f172a",
+        "950": "#020617"
+      },
+      "gold": {
+        "500": "#F59E0B"
+      }
+    }
+  },
+  "typography": {
+    "headings": {
+      "family": "Manrope, sans-serif",
+      "weights": ["600", "700", "800"],
+      "usage": "Use for all section titles, hero text, and card headers. Letter-spacing tight (-0.02em)."
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weights": ["400", "500"],
+      "usage": "Use for all paragraphs, lists, and navigational elements."
+    },
+    "mono": {
+      "family": "JetBrains Mono, monospace",
+      "usage": "Use for technical data, stats, or tags."
+    }
+  },
+  "layout_strategy": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "grid_system": "Use 'Bento' grids (uneven spans) for committees and projects to avoid visual monotony.",
+    "spacing": "Generous. Use 'py-20' or 'py-24' for section vertical padding. 'gap-8' minimum for grids.",
+    "border_radius": "rounded-xl (12px) for cards, rounded-full for buttons."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white hover:bg-primary/90 rounded-full px-8 py-3 text-sm font-semibold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5",
+      "secondary": "bg-white text-primary border border-slate-200 hover:bg-slate-50 rounded-full px-8 py-3 text-sm font-medium transition-all",
+      "outline": "border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full px-8 py-3 transition-colors"
+    },
+    "cards": {
+      "base": "bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden group",
+      "hover_effect": "hover:-translate-y-1 hover:border-slate-200"
+    },
+    "inputs": {
+      "style": "bg-slate-50 border-slate-200 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg"
+    },
+    "navigation": {
+      "style": "sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60",
+      "links": "text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+    },
+    "news_ticker": {
+      "style": "bg-primary text-white py-2 text-sm font-medium overflow-hidden whitespace-nowrap"
+    }
+  },
+  "sections": {
+    "hero": {
+      "type": "Split Asymmetric",
+      "left": "Headline (H1), Subtext, CTA Group",
+      "right": "Large visual (Image or 3D abstract)",
+      "height": "min-h-[85vh]"
+    },
+    "committees": {
+      "type": "Bento Grid",
+      "columns": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
+      "items": "Mix of large (featured) and small (list) cards."
+    },
+    "projects": {
+      "type": "Kanban / Status Cards",
+      "features": "Status badges (Ongoing/Completed), Tags, Client logos."
+    },
+    "gallery": {
+      "type": "Masonry",
+      "features": "Lightbox on click, Filter tabs at top."
+    }
+  },
+  "assets": {
+    "logo": "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/1b2ml5jj_tx_bha_logo.jpeg",
+    "images": {
+      "hero_main": "https://images.pexels.com/photos/31367509/pexels-photo-31367509.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "consulting_hero": "https://images.pexels.com/photos/7108403/pexels-photo-7108403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "students_collaborating": "https://images.pexels.com/photos/31367509/pexels-photo-31367509.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "office_modern": "https://images.pexels.com/photos/7108284/pexels-photo-7108284.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "placeholder_people": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80",
+      "placeholder_meeting": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+    },
+    "icons": "Use 'lucide-react' for all UI icons (Chevron, Menu, User, MapPin, etc)."
+  },
+  "animation_guidelines": {
+    "library": "framer-motion",
+    "page_transition": {
+      "initial": { "opacity": 0, "y": 20 },
+      "animate": { "opacity": 1, "y": 0 },
+      "exit": { "opacity": 0, "y": -20 },
+      "transition": { "duration": 0.3, "ease": "easeOut" }
+    },
+    "scroll": "Use 'lenis' for smooth scrolling.",
+    "hover": "Scale 1.02, Shadow-lg for cards."
+  },
+  "accessibility": {
+    "contrast": "Ensure Navy text on White meets WCAG AA.",
+    "focus_states": "Visible focus ring (ring-2 ring-primary) on all interactive elements.",
+    "reduced_motion": "Disable complex animations if prefers-reduced-motion is true."
+  },
+  "universal_guidelines": {
+    "do_not_use": [
+      "Gradients on text (keep it professional)",
+      "Generic 'Bootstrap' components",
+      "Center alignment for heavy text blocks"
+    ],
+    "must_do": [
+      "Use 'data-testid' on all interactables",
+      "Ensure mobile responsiveness (hamburger menu on sm screens)",
+      "Use semantic HTML (section, article, nav, header, footer)"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "1. Setup 'Manrope' font from Google Fonts.",
+    "2. Configure Tailwind colors with the Navy/Silver palette.",
+    "3. Create the layout skeleton with a fixed Navbar and Footer.",
+    "4. Implement the 'News Ticker' component immediately.",
+    "5. Build the 'Admin Panel' layout separately (sidebar navigation).",
+    "6. Use 'shadcn/ui' components for complex interactions (Accordion, Dialog, Tabs).",
+    "7. Ensure the Logo is prominent in the Header.",
+    "8. Create 'Committee' and 'Project' data structures (mock data initially)."
+  ]
+}
