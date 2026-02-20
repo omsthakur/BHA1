@@ -217,6 +217,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Team Photos Section */}
+      <section className="py-12 bg-white">
+        <div className="container-main">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "https://images.pexels.com/photos/7108284/pexels-photo-7108284.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "https://images.pexels.com/photos/8761541/pexels-photo-8761541.jpeg?auto=compress&cs=tinysrgb&w=400",
+              "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400",
+            ].map((src, i) => (
+              <div key={i} className="aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 relative group">
+                <img src={src} alt={`Team ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-slate-400 text-center mt-3 italic">Upload your own team and event photos via the admin panel</p>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
