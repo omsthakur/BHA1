@@ -271,6 +271,7 @@ def main():
     # Run all tests
     tester.test_public_endpoints()
     tester.test_contact_form()
+    tester.test_newsletter_functionality()
     
     # Admin tests
     if tester.test_admin_login():
