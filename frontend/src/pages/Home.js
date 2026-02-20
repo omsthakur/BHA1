@@ -156,6 +156,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Photo Banner */}
+      <section className="relative h-48 md:h-64 overflow-hidden">
+        <img src="https://images.pexels.com/photos/7108403/pexels-photo-7108403.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Healthcare professionals" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-[#0F172A]/40" />
+      </section>
+
       {/* Committees Section */}
       <section data-testid="committees-section" className="py-20 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
