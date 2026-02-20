@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Instagram, Mail, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/1b2ml5jj_tx_bha_logo.jpeg";
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/opg518km_IMG_2829.png";
 
 const quickLinks = [
   { label: "Home", path: "/" },
