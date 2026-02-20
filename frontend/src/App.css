@@ -1,34 +1,63 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Custom utility styles for Texas BHA */
+
+.section-padding {
+    @apply py-20 lg:py-24;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.page-header {
+    @apply bg-[#0F172A] text-white py-20 lg:py-28;
 }
 
-.App-link {
-    color: #61dafb;
+.page-header h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.page-header p {
+    @apply text-slate-300 mt-4 text-base lg:text-lg max-w-2xl;
+}
+
+/* Card hover effects */
+.card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Image overlay */
+.img-overlay {
+    @apply relative overflow-hidden;
+}
+
+.img-overlay::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.img-overlay:hover::after {
+    @apply opacity-100;
+}
+
+/* Active nav link */
+.nav-link-active {
+    @apply text-[#0F172A] font-semibold;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
 }
