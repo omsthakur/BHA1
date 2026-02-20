@@ -207,7 +207,7 @@ export default function Home() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/committees" data-testid="view-all-committees">
+            <Link to="/committees/consulting" data-testid="view-all-committees">
               <Button className="bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full px-8 text-sm font-semibold">
                 View All Committees
                 <ArrowRight className="ml-2 h-4 w-4" />
