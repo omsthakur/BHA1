@@ -23,20 +23,25 @@ Build a professional, modern website for Texas Business Healthcare Association w
 - Contact form with inquiry type selection
 
 ## What's Been Implemented (Feb 20, 2026)
-- [x] Full backend API with 9 MongoDB collections + JWT admin auth
+- [x] Full backend API with 10+ MongoDB collections + JWT admin auth
 - [x] Database seeding with comprehensive placeholder data
-- [x] Home page: Hero, news ticker, about section, committees highlight, CTA
-- [x] Consulting page: Services grid, completed/ongoing projects with status
-- [x] Committees page: Detailed committee cards with photos, missions, leadership
-- [x] Policy page: Accordion sections with status badges and tags
+- [x] **Navigation**: Committees dropdown (Philanthropy, Consulting, Policy, Expansion, Outreach/Marketing) + Home, Gallery, Newsletter, Opportunities, Contact
+- [x] **New Logo**: Blue abstract pinwheel logo applied throughout (navbar, hero, footer, admin)
+- [x] **Hero**: Blurred background image behind logo for layered look
+- [x] **Photo-forward design**: Side-by-side text+image blocks, photo banners, photo grids on all pages
+- [x] Home page: Hero, news ticker, about section, photo banner, committees highlight, team photos, CTA
+- [x] Philanthropy page: Charitable initiatives, photo grid, event photos
+- [x] Consulting page: Team photo, services grid, completed/ongoing projects
+- [x] Policy page: Research team photo, accordion sections with status badges
+- [x] Expansion page: Team photo, chapter cards, Texas map, Start a Chapter CTA
+- [x] Outreach/Marketing page: Social strategy, marketing activities, social links
 - [x] Gallery page: Filterable grid with lightbox, social media links
-- [x] Chapters page: Chapter cards, Texas map visualization, Start a Chapter CTA
-- [x] Opportunities page: Philanthropy and other opportunities with CTAs
+- [x] Newsletter page: Subscribe form (name, email), archive section with past issues
+- [x] Opportunities page: Photo section, philanthropy and other opportunities with CTAs
 - [x] Contact page: Form with inquiry type, contact info sidebar
-- [x] Admin panel: Login + full CRUD for all 9 content types
-- [x] Responsive navbar with mobile Sheet menu
+- [x] Admin panel: Login + full CRUD for all content types + newsletter management
+- [x] Responsive navbar with mobile Sheet menu + Committees dropdown
 - [x] Footer with quick links, social media, copyright
-- [x] Navy + white + silver design theme with Manrope/Inter fonts
 
 ## Testing Results
 - Backend: 100% (all 16 endpoints passing)
