@@ -126,6 +126,33 @@ class TexasBHAAPITester:
             data=test_data
         )
 
+    def test_newsletter_functionality(self):
+        """Test newsletter subscription functionality"""
+        print(f"\n📰 Testing Newsletter Functionality...")
+        
+        # Test newsletter subscription
+        test_subscriber_data = {
+            "name": f"Test Subscriber {datetime.now().strftime('%H%M%S')}",
+            "email": f"test.subscriber.{datetime.now().strftime('%H%M%S')}@example.com"
+        }
+        
+        self.run_test(
+            "Newsletter Subscription",
+            "POST",
+            "newsletter/subscribe",
+            200,
+            data=test_subscriber_data
+        )
+        
+        # Test duplicate subscription (should still return success)
+        self.run_test(
+            "Duplicate Newsletter Subscription",
+            "POST",
+            "newsletter/subscribe",
+            200,
+            data=test_subscriber_data
+        )
+
     def test_admin_endpoints(self):
         """Test admin-only endpoints"""
         if not self.token:
