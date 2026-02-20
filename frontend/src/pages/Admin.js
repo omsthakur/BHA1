@@ -14,7 +14,7 @@ import { LogOut, Plus, Pencil, Trash2, Users, FolderKanban, FileText, Image, Map
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/opg518km_IMG_2829.png";
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/ipzsi01e_image.png";
 
 function AdminLogin({ onLogin }) {
   const [email, setEmail] = useState("");
