@@ -188,6 +188,20 @@ async def get_consulting_services():
     items = await db.consulting_services.find({}, {"_id": 0}).to_list(50)
     return items
 
+@api_router.get("/newsletters")
+async def get_newsletters():
+    items = await db.newsletters.find({}, {"_id": 0}).sort("date", -1).to_list(50)
+    return items
+
+@api_router.post("/newsletter/subscribe")
+async def subscribe_newsletter(data: NewsletterSubscriber):
+    existing = await db.newsletter_subscribers.find_one({"email": data.email}, {"_id": 0})
+    if existing:
+        return {"success": True, "message": "You're already subscribed!"}
+    doc = data.model_dump()
+    await db.newsletter_subscribers.insert_one(doc)
+    return {"success": True, "message": "Successfully subscribed!"}
+
 # ==================== CONTACT FORM ====================
 
 @api_router.post("/contact")
