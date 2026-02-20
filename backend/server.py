@@ -563,6 +563,16 @@ async def seed_database():
         await db.consulting_services.insert_one(s.model_dump())
 
     logger.info("Database seeded successfully!")
+    
+    # Newsletters
+    newsletters = [
+        Newsletter(title="Texas BHA Spring 2025 Newsletter", date="2025-03-01", preview="Highlights from our spring membership drive, upcoming conference details, and new chapter announcements.", link="#"),
+        Newsletter(title="Healthcare Innovation Spotlight - Q4 2024", date="2024-12-15", preview="Year-end recap of our consulting projects, policy briefs, and the Healthcare Innovation Challenge winners.", link="#"),
+        Newsletter(title="Chapter Expansion Update - Fall 2024", date="2024-10-01", preview="Three new chapters launched this fall! Read about our expansion to SMU, UNT, and Texas State.", link="#"),
+        Newsletter(title="Summer Internship Recap 2024", date="2024-08-15", preview="Our interns share their experiences at top healthcare consulting firms and hospitals across Texas.", link="#"),
+    ]
+    for n in newsletters:
+        await db.newsletters.insert_one(n.model_dump())
 
 # ==================== APP SETUP ====================
 
