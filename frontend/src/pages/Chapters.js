@@ -57,11 +57,27 @@ export default function Chapters() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Expansion</Badge>
+          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Committee</Badge>
           <h1 data-testid="chapters-page-title" style={{ fontFamily: 'Manrope, sans-serif' }}>
-            Our Chapters
+            Expansion
           </h1>
           <p>Growing our impact across Texas universities. Join or start a chapter at your school.</p>
+        </div>
+      </section>
+
+      {/* Expansion Team Photo */}
+      <section className="py-12 bg-white">
+        <div className="container-main">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="rounded-2xl overflow-hidden aspect-[16/10] bg-slate-100">
+              <img src="https://images.pexels.com/photos/7413915/pexels-photo-7413915.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Chapter expansion team" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Our Expansion Team</h2>
+              <p className="text-slate-500 mt-3 leading-relaxed">The Expansion Committee drives Texas BHA's growth by establishing new chapters at universities across the state. We provide mentorship, resources, and support to help new chapters thrive from day one.</p>
+              <p className="text-xs text-slate-400 mt-4 italic">Upload your team photo via the admin panel</p>
+            </div>
+          </div>
         </div>
       </section>
 
