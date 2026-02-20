@@ -6,14 +6,16 @@ const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/a
 
 const quickLinks = [
   { label: "Home", path: "/" },
-  { label: "Consulting & Projects", path: "/consulting" },
-  { label: "Committees", path: "/committees" },
-  { label: "Policy & Research", path: "/policy" },
+  { label: "Philanthropy", path: "/committees/philanthropy" },
+  { label: "Consulting", path: "/committees/consulting" },
+  { label: "Policy", path: "/committees/policy" },
 ];
 
 const moreLinks = [
+  { label: "Expansion", path: "/committees/expansion" },
+  { label: "Outreach", path: "/committees/outreach" },
   { label: "Gallery", path: "/gallery" },
-  { label: "Chapters", path: "/chapters" },
+  { label: "Newsletter", path: "/newsletter" },
   { label: "Opportunities", path: "/opportunities" },
   { label: "Contact Us", path: "/contact" },
 ];
