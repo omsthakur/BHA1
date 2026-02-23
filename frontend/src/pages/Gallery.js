@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { X, Instagram, Linkedin, Twitter, Camera } from "lucide-react";
+import { X, Instagram, Linkedin, Twitter, Camera, ExternalLink, RefreshCw } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const INSTAGRAM_USERNAME = "texasbha";
+const INSTAGRAM_URL = "https://www.instagram.com/texasbha/";
 
 const categories = ["All", "Events", "Meetings", "Socials", "Conferences"];
 
