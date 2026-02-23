@@ -15,9 +15,28 @@ export default function Gallery() {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("All");
   const [selectedImage, setSelectedImage] = useState(null);
+  const instagramRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/gallery`).then(r => setItems(r.data)).catch(console.error);
+  }, []);
+
+  // Load Instagram embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    script.onload = () => {
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
+      }
+    };
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   const filtered = filter === "All" ? items : items.filter(item => item.category === filter);
