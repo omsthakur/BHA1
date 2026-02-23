@@ -39,10 +39,6 @@ function TexasMap() {
 
   return (
     <div className="relative bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <div className="absolute top-4 left-4 z-10">
-        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
-      </div>
-      
       {/* Map Container */}
       <div className="relative max-w-lg mx-auto">
         {/* Texas SVG */}
@@ -129,11 +125,7 @@ export default function Chapters() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <div className="flex items-center gap-3 mb-3">
-            <p className="text-slate-400 text-xs font-medium uppercase tracking-widest">Committee</p>
-            <span className="text-slate-500">•</span>
-            <p className="text-amber-400 text-xs font-medium uppercase tracking-widest">Est. 2019</p>
-          </div>
+          <p className="text-slate-400 text-xs font-medium uppercase tracking-widest mb-3">Committee</p>
           <h1 data-testid="chapters-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Expansion
           </h1>

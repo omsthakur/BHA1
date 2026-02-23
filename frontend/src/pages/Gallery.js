@@ -6,8 +6,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, Instagram, Linkedin, Twitter, Camera, ExternalLink } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-const INSTAGRAM_USERNAME = "texasbha";
-const INSTAGRAM_URL = "https://www.instagram.com/texasbha/";
+const INSTAGRAM_USERNAME = "tx_bha";
+const INSTAGRAM_URL = "https://www.instagram.com/tx_bha/";
 
 const categories = ["All", "Events", "Meetings", "Socials", "Conferences"];
 
