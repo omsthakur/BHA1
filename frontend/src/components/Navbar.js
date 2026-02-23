@@ -37,8 +37,8 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3" data-testid="navbar-logo">
-            <div className="h-10 w-10 rounded-full bg-[#0F172A] p-1.5 flex items-center justify-center overflow-hidden">
-              <img src={LOGO_URL} alt="Texas BHA" className="h-full w-full object-contain" />
+            <div className="h-10 w-10 rounded-full bg-[#0F172A] flex items-center justify-center overflow-hidden">
+              <img src={LOGO_URL} alt="Texas BHA" className="h-[200%] w-[200%] object-contain mix-blend-screen" />
             </div>
             <span className="font-bold text-lg text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Texas BHA
