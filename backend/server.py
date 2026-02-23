@@ -114,6 +114,16 @@ class ConsultingService(BaseModel):
     icon: str = ""
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
+class TeamMember(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    role: str
+    category: str = "Executive Board"
+    bio: str = ""
+    photo_url: str = ""
+    order: int = 0
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
 class Newsletter(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     title: str
