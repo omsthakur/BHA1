@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { LogOut, Plus, Pencil, Trash2, Users, FolderKanban, FileText, Image, MapPin, Briefcase, Megaphone, Mail, Settings as SettingsIcon, ArrowLeft, Newspaper, UserCircle } from "lucide-react";
+import { LogOut, Plus, Pencil, Trash2, Users, FolderKanban, FileText, Image, MapPin, Briefcase, Megaphone, Mail, Settings as SettingsIcon, ArrowLeft, Newspaper, UserCircle, Upload, X, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
