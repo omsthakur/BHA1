@@ -44,6 +44,7 @@ function App() {
             <Route path="/committees" element={<Committees />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/newsletter" element={<Newsletter />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/opportunities" element={<Opportunities />} />
             <Route path="/contact" element={<Contact />} />
           </Route>
