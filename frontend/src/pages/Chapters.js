@@ -191,33 +191,98 @@ export default function Chapters() {
                 </div>
               </div>
             </div>
-            <TexasMap chapters={chapters} />
+            <TexasMap />
           </div>
         </div>
       </section>
 
-      {/* Chapter Cards */}
+      {/* College Chapters */}
       <section data-testid="chapters-grid" className="py-20 bg-slate-50">
         <div className="container-main">
-          <h2 className="text-3xl font-bold text-[#0F172A] mb-10" style={{ fontFamily: 'Manrope, sans-serif' }}>All Chapters</h2>
+          <div className="flex items-center gap-3 mb-6">
+            <GraduationCap className="h-6 w-6 text-[#0F172A]" />
+            <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>College Chapters</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {chapters.map((chapter, idx) => (
-              <Card
-                key={chapter.id || idx}
-                data-testid={`chapter-card-${idx}`}
-                className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-              >
+            {/* UT Austin - Main Chapter */}
+            <Card className="bg-white border-2 border-[#BF5700] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <Badge className="bg-[#BF5700] text-white text-xs mb-2">Founding Chapter</Badge>
+                    <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                      UT Austin
+                    </h3>
+                    <p className="text-slate-400 text-sm">University of Texas at Austin</p>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-[#BF5700] flex items-center justify-center shrink-0">
+                    <GraduationCap className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+                <p className="text-slate-500 text-sm mt-4 leading-relaxed">The founding chapter of Texas BHA, home to the HEALTHCARE REFORM & INNOVATION minor.</p>
+                <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                  <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                  <span>Austin, TX</span>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Texas A&M */}
+            {staticChapters.colleges.map((chapter, idx) => (
+              <Card key={idx} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
                       <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                        {chapter.name}
+                        {chapter.name.replace(' University', '')}
                       </h3>
-                      <p className="text-slate-400 text-sm">{chapter.university}</p>
+                      <p className="text-slate-400 text-sm">{chapter.name}</p>
                     </div>
                     <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center shrink-0">
-                      <MapPin className="h-4 w-4 text-white" />
+                      <GraduationCap className="h-4 w-4 text-white" />
                     </div>
+                  </div>
+                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">Expanding the Texas BHA mission to Aggieland.</p>
+                  <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                    <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                    <span>{chapter.location}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* High School Chapters */}
+          <div className="flex items-center gap-3 mb-6 mt-12">
+            <School className="h-6 w-6 text-[#BF5700]" />
+            <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>High School Chapters</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {staticChapters.highSchools.map((chapter, idx) => (
+              <Card key={idx} data-testid={`hs-chapter-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                        {chapter.name.replace(' High School', '')}
+                      </h3>
+                      <p className="text-slate-400 text-sm">{chapter.name}</p>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-[#BF5700] flex items-center justify-center shrink-0">
+                      <School className="h-4 w-4 text-white" />
+                    </div>
+                  </div>
+                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">Introducing healthcare business to the next generation.</p>
+                  <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+                    <MapPin className="h-3.5 w-3.5 text-slate-400" />
+                    <span>{chapter.location}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
                   </div>
 
                   <p className="text-slate-500 text-sm mt-4 leading-relaxed">{chapter.description}</p>
