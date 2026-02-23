@@ -22,9 +22,7 @@ export default function Outreach() {
   useEffect(() => {
     axios.get(`${API}/team`).then(r => {
       const marketingChairs = r.data.filter(m => 
-        m.role?.toLowerCase().includes('marketing') || 
-        m.role?.toLowerCase().includes('outreach') ||
-        m.category === 'Marketing Chairs'
+        m.category === 'Marketing Chair'
       );
       setChairs(marketingChairs);
     }).catch(console.error);
