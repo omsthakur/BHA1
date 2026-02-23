@@ -302,31 +302,45 @@ function CrudSection({ title, resource, fields, token, icon: Icon }) {
           <div className="space-y-4 py-2">
             {fields.map(f => (
               <div key={f.key}>
-                <Label className="text-sm font-medium text-slate-700">{f.label}</Label>
-                {f.type === "textarea" ? (
-                  <Textarea
-                    data-testid={`form-${f.key}`}
+                {f.type === "image" ? (
+                  <ImageUploadField
+                    label={f.label}
                     value={formData[f.key] || ""}
-                    onChange={e => setFormData({ ...formData, [f.key]: e.target.value })}
-                    className="mt-1.5 bg-slate-50"
-                    rows={3}
+                    onChange={(url) => setFormData({ ...formData, [f.key]: url })}
                   />
+                ) : f.type === "textarea" ? (
+                  <>
+                    <Label className="text-sm font-medium text-slate-700">{f.label}</Label>
+                    <Textarea
+                      data-testid={`form-${f.key}`}
+                      value={formData[f.key] || ""}
+                      onChange={e => setFormData({ ...formData, [f.key]: e.target.value })}
+                      className="mt-1.5 bg-slate-50"
+                      rows={3}
+                    />
+                  </>
                 ) : f.type === "select" ? (
-                  <Select value={formData[f.key] || ""} onValueChange={v => setFormData({ ...formData, [f.key]: v })}>
-                    <SelectTrigger className="mt-1.5 bg-slate-50"><SelectValue /></SelectTrigger>
-                    <SelectContent>
-                      {f.options?.map(opt => <SelectItem key={opt} value={opt}>{opt}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
+                  <>
+                    <Label className="text-sm font-medium text-slate-700">{f.label}</Label>
+                    <Select value={formData[f.key] || ""} onValueChange={v => setFormData({ ...formData, [f.key]: v })}>
+                      <SelectTrigger className="mt-1.5 bg-slate-50"><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {f.options?.map(opt => <SelectItem key={opt} value={opt}>{opt}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </>
                 ) : (
-                  <Input
-                    data-testid={`form-${f.key}`}
-                    type={f.type === "number" ? "number" : "text"}
-                    value={formData[f.key] || ""}
-                    onChange={e => setFormData({ ...formData, [f.key]: e.target.value })}
-                    className="mt-1.5 bg-slate-50"
-                    placeholder={f.placeholder || ""}
-                  />
+                  <>
+                    <Label className="text-sm font-medium text-slate-700">{f.label}</Label>
+                    <Input
+                      data-testid={`form-${f.key}`}
+                      type={f.type === "number" ? "number" : "text"}
+                      value={formData[f.key] || ""}
+                      onChange={e => setFormData({ ...formData, [f.key]: e.target.value })}
+                      className="mt-1.5 bg-slate-50"
+                      placeholder={f.placeholder || ""}
+                    />
+                  </>
                 )}
                 {f.hint && <p className="text-xs text-slate-400 mt-1">{f.hint}</p>}
               </div>
