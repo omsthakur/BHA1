@@ -99,10 +99,6 @@ export default function Chapters() {
 
   const totalChapters = staticChapters.highSchools.length + staticChapters.colleges.length + 1; // +1 for UT Austin
 
-  useEffect(() => {
-    axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
-  }, []);
-
   return (
     <div>
       {/* Page Header */}
@@ -112,7 +108,7 @@ export default function Chapters() {
           <h1 data-testid="chapters-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Expansion
           </h1>
-          <p className="text-slate-300 mt-4 text-base max-w-2xl">Growing our impact across Texas universities. Join or start a chapter at your school.</p>
+          <p className="text-slate-300 mt-4 text-base max-w-2xl">Growing our impact across Texas universities and high schools. Join or start a chapter at your school.</p>
         </div>
       </section>
 
@@ -125,9 +121,49 @@ export default function Chapters() {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Our Expansion Team</h2>
-              <p className="text-slate-500 mt-3 leading-relaxed">The Expansion Committee drives Texas BHA's growth by establishing new chapters at universities across the state. We provide mentorship, resources, and support to help new chapters thrive from day one.</p>
+              <p className="text-slate-500 mt-3 leading-relaxed">The Expansion Committee drives Texas BHA's growth by establishing new chapters at universities and high schools across the state. We provide mentorship, resources, and support to help new chapters thrive from day one.</p>
               <p className="text-xs text-slate-400 mt-4 italic">Upload your team photo via the admin panel</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expansion Chairs */}
+      <section data-testid="expansion-chairs" className="py-16 lg:py-20 bg-slate-50">
+        <div className="container-main">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Leadership</p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Expansion Chairs
+          </h2>
+          <p className="text-slate-500 text-sm mt-2 mb-8 max-w-xl">Meet the leaders driving our chapter growth initiatives.</p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {expansionChairs.length > 0 ? expansionChairs.map((chair, idx) => (
+              <Card key={chair.id || idx} data-testid={`expansion-chair-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
+                <div className="aspect-square bg-slate-50 flex items-center justify-center overflow-hidden">
+                  {chair.photo_url ? (
+                    <img src={chair.photo_url} alt={chair.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-slate-300">
+                      <User className="h-16 w-16" />
+                      <span className="text-[10px] uppercase tracking-wider text-slate-300">Upload Photo</span>
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-4 text-center">
+                  <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                    {chair.name}
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5 font-medium uppercase tracking-wide">{chair.role}</p>
+                </CardContent>
+              </Card>
+            )) : (
+              <div className="col-span-full text-center py-8 bg-white rounded-xl border border-dashed border-slate-200">
+                <User className="h-12 w-12 text-slate-300 mx-auto mb-3" />
+                <p className="text-slate-500 text-sm">Expansion chairs will appear here</p>
+                <p className="text-slate-400 text-xs mt-1">Add team members with "Expansion" in their role via admin panel</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -141,11 +177,11 @@ export default function Chapters() {
                 Chapters Across Texas
               </h2>
               <p className="text-slate-500 mt-3 leading-relaxed">
-                Texas BHA chapters are active at major universities across the state. Each chapter operates with autonomy while contributing to our statewide mission of advancing healthcare business education.
+                Texas BHA chapters are active at universities and high schools across the state. Each chapter operates with autonomy while contributing to our statewide mission of advancing healthcare business education.
               </p>
               <div className="mt-6 flex items-center gap-4">
                 <div className="text-center">
-                  <p className="text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>{chapters.length}</p>
+                  <p className="text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>{totalChapters}</p>
                   <p className="text-slate-400 text-sm">Active Chapters</p>
                 </div>
                 <div className="w-px h-12 bg-slate-200" />
