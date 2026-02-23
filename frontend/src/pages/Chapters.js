@@ -23,18 +23,18 @@ const staticChapters = {
 };
 
 function TexasMap() {
-  // Chapter positions - centered within Texas shape (viewBox 50 30 350 380)
-  const chapterPositions = [
+  // Chapter data with positions as percentages for responsive positioning
+  const chapters = [
     // North Texas / Dallas area
-    { name: "Prosper HS", x: 195, y: 95, type: "high_school" },
-    { name: "Wylie HS", x: 225, y: 105, type: "high_school" },
+    { name: "Prosper", x: "52%", y: "18%", type: "high_school" },
+    { name: "Wylie", x: "60%", y: "22%", type: "high_school" },
     // Central Texas / Austin area  
-    { name: "Round Rock HS", x: 165, y: 215, type: "high_school" },
-    { name: "UT Austin", x: 175, y: 235, type: "college" },
-    { name: "Travis HS", x: 170, y: 255, type: "high_school" },
-    { name: "Texas A&M", x: 220, y: 225, type: "college" },
+    { name: "Round Rock", x: "42%", y: "55%", type: "high_school" },
+    { name: "UT Austin", x: "45%", y: "62%", type: "college" },
+    { name: "Travis", x: "40%", y: "70%", type: "high_school" },
+    { name: "Texas A&M", x: "58%", y: "58%", type: "college" },
     // Houston area
-    { name: "Bridgeland HS", x: 265, y: 260, type: "high_school" },
+    { name: "Bridgeland", x: "72%", y: "68%", type: "high_school" },
   ];
 
   return (
@@ -42,60 +42,52 @@ function TexasMap() {
       <div className="absolute top-4 left-4 z-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
       </div>
-      <svg viewBox="50 30 350 380" className="w-full max-w-lg mx-auto" fill="none">
-        {/* Texas state outline - simplified */}
-        <path
-          d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
-             L315,70 L325,90 L335,110 L340,130 L345,160 L350,190 L355,220 L358,250 L355,280 
-             L350,310 L340,335 L325,355 L305,370 L280,380 L250,385 L220,382 L190,378 L160,370 
-             L135,358 L115,340 L100,318 L90,290 L82,260 L78,230 L76,200 L78,170 L84,140 
-             L92,110 L100,80 Z"
-          fill="#F1F5F9"
-          stroke="#CBD5E1"
-          strokeWidth="2"
-        />
+      
+      {/* Map Container */}
+      <div className="relative max-w-lg mx-auto">
+        {/* Texas SVG */}
+        <svg viewBox="50 30 350 380" className="w-full" fill="none">
+          <path
+            d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
+               L315,70 L325,90 L335,110 L340,130 L345,160 L350,190 L355,220 L358,250 L355,280 
+               L350,310 L340,335 L325,355 L305,370 L280,380 L250,385 L220,382 L190,378 L160,370 
+               L135,358 L115,340 L100,318 L90,290 L82,260 L78,230 L76,200 L78,170 L84,140 
+               L92,110 L100,80 Z"
+            fill="#F1F5F9"
+            stroke="#CBD5E1"
+            strokeWidth="2"
+          />
+        </svg>
         
-        {/* Chapter markers */}
-        {chapterPositions.map((ch, i) => (
-          <g key={i}>
-            {/* Outer glow */}
-            <circle 
-              cx={ch.x} 
-              cy={ch.y} 
-              r={ch.type === "college" ? "16" : "12"} 
-              fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"}
-              opacity="0.25"
-            />
-            {/* Main marker */}
-            <circle 
-              cx={ch.x} 
-              cy={ch.y} 
-              r={ch.type === "college" ? "9" : "6"} 
-              fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"} 
-              stroke="white"
-              strokeWidth="2"
-            />
-            {/* Inner dot */}
-            <circle 
-              cx={ch.x} 
-              cy={ch.y} 
-              r={ch.type === "college" ? "3" : "2"} 
-              fill="white" 
-            />
-            {/* Label */}
-            <text 
-              x={ch.x + (ch.type === "college" ? 13 : 10)} 
-              y={ch.y + 4} 
-              fill="#0F172A" 
-              fontSize="9" 
-              fontWeight="600"
-              fontFamily="Arial, sans-serif"
+        {/* Chapter Markers Overlay */}
+        <div className="absolute inset-0">
+          {chapters.map((ch, i) => (
+            <div 
+              key={i}
+              className="absolute flex items-center group"
+              style={{ left: ch.x, top: ch.y, transform: 'translate(-50%, -50%)' }}
             >
-              {ch.name}
-            </text>
-          </g>
-        ))}
-      </svg>
+              {/* Marker */}
+              <div className={`
+                relative flex items-center justify-center rounded-full border-2 border-white shadow-md
+                ${ch.type === "college" 
+                  ? `w-6 h-6 ${ch.name === "UT Austin" ? "bg-[#BF5700]" : "bg-[#0F172A]"}` 
+                  : "w-4 h-4 bg-[#BF5700]"
+                }
+              `}>
+                <div className={`rounded-full bg-white ${ch.type === "college" ? "w-2 h-2" : "w-1.5 h-1.5"}`} />
+              </div>
+              {/* Label */}
+              <span className={`
+                ml-1 px-1.5 py-0.5 bg-white/90 rounded text-[10px] font-semibold text-[#0F172A] whitespace-nowrap shadow-sm
+                ${ch.type === "college" ? "font-bold" : ""}
+              `}>
+                {ch.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
       
       {/* Legend */}
       <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-slate-100">
