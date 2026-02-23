@@ -28,8 +28,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-12 w-12 rounded-full bg-white/10 p-1 flex items-center justify-center overflow-hidden">
-                <img src={LOGO_URL} alt="Texas BHA" className="h-full w-full object-contain mix-blend-screen" />
+              <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center overflow-hidden">
+                <img src={LOGO_URL} alt="Texas BHA" className="h-[200%] w-[200%] object-contain mix-blend-screen" />
               </div>
               <span className="font-bold text-xl tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 Texas BHA
