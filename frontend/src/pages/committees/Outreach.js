@@ -72,6 +72,46 @@ export default function Outreach() {
         </div>
       </section>
 
+      {/* Marketing Chairs */}
+      <section data-testid="marketing-chairs" className="py-16 lg:py-20 bg-slate-50">
+        <div className="container-main">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Leadership</p>
+          <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Marketing Chairs
+          </h2>
+          <p className="text-slate-500 text-sm mt-2 mb-8 max-w-xl">Meet the leaders driving our marketing and outreach initiatives.</p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {chairs.length > 0 ? chairs.map((chair, idx) => (
+              <Card key={chair.id || idx} data-testid={`marketing-chair-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden">
+                <div className="aspect-square bg-slate-50 flex items-center justify-center overflow-hidden">
+                  {chair.photo_url ? (
+                    <img src={chair.photo_url} alt={chair.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-slate-300">
+                      <User className="h-16 w-16" />
+                      <span className="text-[10px] uppercase tracking-wider text-slate-300">Upload Photo</span>
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-4 text-center">
+                  <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                    {chair.name}
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5 font-medium uppercase tracking-wide">{chair.role}</p>
+                </CardContent>
+              </Card>
+            )) : (
+              <div className="col-span-full text-center py-8 bg-white rounded-xl border border-dashed border-slate-200">
+                <User className="h-12 w-12 text-slate-300 mx-auto mb-3" />
+                <p className="text-slate-500 text-sm">Marketing chairs will appear here</p>
+                <p className="text-slate-400 text-xs mt-1">Add team members with "Marketing" or "Outreach" in their role via admin panel</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Upcoming Events */}
       <section data-testid="upcoming-events" className="py-16 lg:py-20 bg-slate-50">
         <div className="container-main">
