@@ -163,15 +163,39 @@ export default function Consulting() {
       {/* Completed Projects */}
       <section data-testid="completed-projects" className="py-16 bg-slate-50">
         <div className="container-main">
-          <div className="flex items-center gap-3 mb-2">
-            <CheckCircle2 className="h-5 w-5 text-emerald-600" />
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Portfolio</p>
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Portfolio</p>
+            </div>
+            {completedProjects.length > 3 && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => scrollCompleted('left')}
+                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
+                  data-testid="completed-scroll-left"
+                >
+                  <ChevronLeft className="h-5 w-5 text-slate-600" />
+                </button>
+                <button
+                  onClick={() => scrollCompleted('right')}
+                  className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
+                  data-testid="completed-scroll-right"
+                >
+                  <ChevronRight className="h-5 w-5 text-slate-600" />
+                </button>
+              </div>
+            )}
           </div>
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Completed Projects</h2>
           <p className="text-slate-500 text-sm mt-2 mb-8 max-w-2xl">Showcasing the impactful work our teams have delivered.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div 
+            ref={completedScrollRef}
+            className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
             {completedProjects.map((project, idx) => (
-              <Card key={project.id || idx} data-testid={`completed-project-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden group">
+              <Card key={project.id || idx} data-testid={`completed-project-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden group flex-shrink-0 w-[320px]">
                 <div className="h-40 overflow-hidden relative">
                   <img src={project.image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <Badge className="absolute top-3 left-3 bg-emerald-600 text-white text-xs">Completed</Badge>
