@@ -442,6 +442,7 @@ export default function Admin() {
           <TabsContent value="announcements"><CrudSection title="Announcement" resource="announcements" fields={announcementFields} token={token} icon={Megaphone} /></TabsContent>
           <TabsContent value="consulting"><CrudSection title="Consulting Service" resource="consulting-services" fields={consultingFields} token={token} icon={SettingsIcon} /></TabsContent>
           <TabsContent value="newsletters"><CrudSection title="Newsletter" resource="newsletters" fields={newsletterFields} token={token} icon={Newspaper} /></TabsContent>
+          <TabsContent value="team"><CrudSection title="Team Member" resource="team" fields={teamFields} token={token} icon={UserCircle} /></TabsContent>
           <TabsContent value="contacts"><ContactsView token={token} /></TabsContent>
         </Tabs>
       </div>
