@@ -455,6 +455,29 @@ async def get_subscribers(request: Request):
     items = await db.newsletter_subscribers.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return items
 
+# --- Team Members ---
+@api_router.post("/admin/team")
+async def create_team_member(data: TeamMember, request: Request):
+    await get_current_admin(request)
+    doc = data.model_dump()
+    await db.team_members.insert_one(doc)
+    return await db.team_members.find_one({"id": doc["id"]}, {"_id": 0})
+
+@api_router.put("/admin/team/{item_id}")
+async def update_team_member(item_id: str, request: Request):
+    await get_current_admin(request)
+    body = await request.json()
+    body.pop("_id", None)
+    body.pop("id", None)
+    await db.team_members.update_one({"id": item_id}, {"$set": body})
+    return await db.team_members.find_one({"id": item_id}, {"_id": 0})
+
+@api_router.delete("/admin/team/{item_id}")
+async def delete_team_member(item_id: str, request: Request):
+    await get_current_admin(request)
+    await db.team_members.delete_one({"id": item_id})
+    return {"success": True}
+
 # --- Admin Contacts ---
 @api_router.get("/admin/contacts")
 async def get_contacts(request: Request):
