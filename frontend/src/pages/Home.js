@@ -143,7 +143,7 @@ export default function Home() {
                 Where Academic Rigor Meets Industry Impact
               </h2>
               <p className="mt-4 text-slate-600 leading-relaxed text-[15px]">
-                Texas BHA operates in partnership with the University of Texas at Austin's Healthcare Administration minor, providing students with an applied extension of their academic studies. Our work bridges classroom learning with real-world healthcare consulting, policy analysis, and community engagement.
+                The Texas Business Healthcare Association is the official student organization of the Healthcare Innovation Initiative minor. Texas BHA is focused on fostering the next generation of healthcare pioneers by exposing students to the financial, managerial, legal, political, and consulting aspects of the healthcare industry through committees, projects, and social programming.
               </p>
               <p className="mt-3 text-slate-600 leading-relaxed text-[15px]">
                 Through our five committees and expanding chapter network, we prepare students for careers at the intersection of healthcare and business — in consulting, health systems administration, policy, and entrepreneurship.
