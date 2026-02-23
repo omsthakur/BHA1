@@ -79,7 +79,7 @@ export default function Home() {
               <div className="relative">
                 <div className="w-72 h-72 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm">
                   <div className="w-52 h-52 rounded-full bg-[#0F172A] flex items-center justify-center shadow-2xl overflow-hidden">
-                    <img src={LOGO_URL} alt="Texas BHA Logo" className="object-contain mix-blend-screen" style={{ width: '280%', height: '280%', marginTop: '15%' }} />
+                    <img src={LOGO_URL} alt="Texas BHA Logo" className="object-contain mix-blend-screen" style={{ width: '340%', height: '340%', marginTop: '18%' }} />
                   </div>
                 </div>
               </div>
