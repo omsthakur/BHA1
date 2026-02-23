@@ -93,29 +93,30 @@ export default function Outreach() {
         </div>
       </section>
 
-      {/* Google Calendar Embed */}
-      <section data-testid="google-calendar" className="py-16 lg:py-20 bg-white">
+      {/* Google Calendar Link */}
+      <section data-testid="google-calendar" className="py-12 bg-white border-b border-slate-100">
         <div className="container-main">
-          <div className="flex items-center gap-3 mb-2">
-            <Calendar className="h-5 w-5 text-[#0F172A]" />
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Live Calendar</p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-[#0F172A] flex items-center justify-center shrink-0">
+                <Calendar className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>BHA Event Calendar</h3>
+                <p className="text-slate-500 text-sm mt-0.5">View all upcoming events, meetings, and deadlines in one place.</p>
+              </div>
+            </div>
+            <a
+              href="https://calendar.google.com/calendar"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="calendar-link"
+            >
+              <Button className="bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full px-6 text-sm font-semibold whitespace-nowrap">
+                Open Calendar <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </a>
           </div>
-          <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight mb-3" style={{ fontFamily: 'Manrope, sans-serif' }}>BHA Event Calendar</h2>
-          <p className="text-slate-500 text-sm mb-8 max-w-2xl">View all upcoming Texas BHA events in one place. This calendar syncs automatically — events are updated in real time.</p>
-          <div className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-sm">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?showTitle=0&showNav=1&showPrint=0&showTabs=1&showCalendars=0&showTz=0&height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FChicago"
-              title="Texas BHA Google Calendar"
-              className="w-full border-0"
-              style={{ height: '600px' }}
-              frameBorder="0"
-              scrolling="no"
-              data-testid="calendar-embed"
-            />
-          </div>
-          <p className="text-xs text-slate-400 mt-4 text-center">
-            To display your own calendar, replace the embed URL in the admin settings with your Google Calendar public embed link.
-          </p>
         </div>
       </section>
 
