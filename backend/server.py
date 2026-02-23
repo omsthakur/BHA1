@@ -212,6 +212,11 @@ async def subscribe_newsletter(data: NewsletterSubscriber):
     await db.newsletter_subscribers.insert_one(doc)
     return {"success": True, "message": "Successfully subscribed!"}
 
+@api_router.get("/team")
+async def get_team_members():
+    items = await db.team_members.find({}, {"_id": 0}).sort("order", 1).to_list(100)
+    return items
+
 # ==================== CONTACT FORM ====================
 
 @api_router.post("/contact")
