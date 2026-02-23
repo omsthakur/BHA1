@@ -44,9 +44,19 @@ Build a professional, modern website for Texas Business Healthcare Association w
 - [x] Footer with quick links, social media, copyright
 
 ## What's Been Implemented (Dec 2025)
-- [x] **Minor name corrected**: Changed to "Healthcare Reform and Innovation Minor" on Opportunities page
-- [x] **Google Calendar icon**: Added to navigation bar (desktop + mobile) linking to https://calendar.google.com/calendar/u/0?cid=NzExY2ZkYjFhOTQyMzU4MGJkZDI3ZTRhMjMwYjg0MzZjMDcyYzNmMTgyMjc5ZDViODQ2M2RjM2UxODI3ZGVkZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t
+- [x] **Minor name corrected**: Changed to "HEALTHCARE REFORM & INNOVATION" across all pages
+- [x] **Google Calendar icon**: Added to navigation bar (desktop + mobile) linking to user's calendar
 - [x] **Hero section cleaned**: Removed decorative floating icons around the logo
+- [x] **Logo zoomed**: Increased logo zoom to 420% for better visibility
+- [x] **Team page updated**: Removed Committee Leads section, keeping only Executive Board
+- [x] **Consulting page updated**: Added horizontal scroll with arrow navigation for ongoing projects
+- [x] **Outreach page updated**: Added Marketing Chairs leadership section
+- [x] **Expansion page updated**: 
+    - Added Expansion Chairs leadership section
+    - Added static chapters for high schools (Prosper, Bridgeland, Wylie, Round Rock, Travis)
+    - Added Texas A&M as college chapter
+    - Updated map with legend differentiating college vs high school chapters
+- [x] **Opportunities page**: Updated UT minor link to McCombs Healthcare Minor page
 
 ## Testing Results
 - Backend: 100% (all 16 endpoints passing)
