@@ -43,6 +43,11 @@ Build a professional, modern website for Texas Business Healthcare Association w
 - [x] Responsive navbar with mobile Sheet menu + Committees dropdown
 - [x] Footer with quick links, social media, copyright
 
+## What's Been Implemented (Dec 2025)
+- [x] **Minor name corrected**: Changed to "Healthcare Reform and Innovation Minor" on Opportunities page
+- [x] **Google Calendar icon**: Added to navigation bar (desktop + mobile) linking to https://calendar.google.com/calendar/u/0?cid=NzExY2ZkYjFhOTQyMzU4MGJkZDI3ZTRhMjMwYjg0MzZjMDcyYzNmMTgyMjc5ZDViODQ2M2RjM2UxODI3ZGVkZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t
+- [x] **Hero section cleaned**: Removed decorative floating icons around the logo
+
 ## Testing Results
 - Backend: 100% (all 16 endpoints passing)
 - Frontend: 95% (lightbox close button minor fix applied)
