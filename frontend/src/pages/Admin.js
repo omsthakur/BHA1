@@ -484,7 +484,7 @@ const newsletterFields = [
 const teamFields = [
   { key: "name", label: "Name", type: "text" },
   { key: "role", label: "Role/Title", type: "text" },
-  { key: "category", label: "Category", type: "select", options: ["Executive Board", "Committee Leads"] },
+  { key: "category", label: "Category", type: "select", options: ["Executive Board", "Marketing Chair", "Expansion Chair", "Committee Leads"] },
   { key: "bio", label: "Bio", type: "textarea" },
   { key: "photo_url", label: "Photo", type: "image" },
   { key: "order", label: "Display Order", type: "number", defaultValue: "0" },
