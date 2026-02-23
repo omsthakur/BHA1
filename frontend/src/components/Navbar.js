@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/ipzsi01e_image.png";
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/o98mp0qz_image.png";
 
 const committeeLinks = [
   { label: "Philanthropy", path: "/committees/philanthropy" },
