@@ -4,7 +4,8 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, BookOpen, Lightbulb, ChevronRight, Megaphone } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { ArrowRight, Users, BookOpen, Lightbulb, ChevronRight, Megaphone, GraduationCap, Building2 } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/0ijxjfll_image.png";
@@ -22,12 +23,12 @@ export default function Home() {
     <div>
       {/* News Ticker */}
       {announcements.length > 0 && (
-        <div data-testid="news-ticker" className="bg-[#0F172A] text-white py-2.5 overflow-hidden border-b border-slate-800">
+        <div data-testid="news-ticker" className="bg-[#0F172A] text-white py-2 overflow-hidden border-b border-slate-800">
           <div className="animate-ticker flex whitespace-nowrap">
             {[...announcements, ...announcements].map((a, i) => (
-              <span key={i} className="inline-flex items-center gap-2 mx-8 text-sm">
-                <Megaphone className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                <span className="text-slate-200">{a.title}</span>
+              <span key={i} className="inline-flex items-center gap-2 mx-8 text-xs tracking-wide">
+                <Megaphone className="h-3 w-3 text-amber-400 shrink-0" />
+                <span className="text-slate-300">{a.title}</span>
               </span>
             ))}
           </div>
@@ -36,44 +37,40 @@ export default function Home() {
 
       {/* Hero Section */}
       <section data-testid="hero-section" className="bg-[#0F172A] text-white relative overflow-hidden">
-        {/* Blurred Background Image */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-            alt=""
-            className="w-full h-full object-cover opacity-15 blur-sm"
-          />
+          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="" className="w-full h-full object-cover opacity-10 blur-sm" />
         </div>
-        <div className="absolute inset-0 bg-[#0F172A]/80" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <div className="absolute inset-0 bg-[#0F172A]/85" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
-              <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-6 text-xs font-medium px-3 py-1">
-                Shaping the Future of Healthcare Business
-              </Badge>
+              <div className="flex items-center gap-2 mb-6">
+                <div className="h-px w-8 bg-amber-400" />
+                <span className="text-xs font-medium uppercase tracking-widest text-amber-400">Affiliated with UT Austin's Healthcare Administration Minor</span>
+              </div>
               <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]"
+                className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]"
                 style={{ fontFamily: 'Manrope, sans-serif' }}
               >
                 Texas Business
                 <br />
-                <span className="text-slate-400">Healthcare</span>
+                Healthcare
                 <br />
-                Association
+                <span className="text-slate-400">Association</span>
               </h1>
-              <p className="mt-6 text-slate-300 text-base lg:text-lg max-w-lg leading-relaxed">
-                Empowering student leaders and young professionals to transform the healthcare industry through consulting, policy research, and community engagement.
+              <p className="mt-6 text-slate-300 text-[15px] max-w-lg leading-relaxed">
+                Preparing the next generation of healthcare business leaders through applied consulting, policy research, and cross-institutional collaboration.
               </p>
-              <div className="flex flex-wrap gap-4 mt-8">
+              <div className="flex flex-wrap gap-3 mt-8">
                 <Link to="/contact" data-testid="hero-join-btn">
-                  <Button className="bg-white text-[#0F172A] hover:bg-slate-100 rounded-full px-8 py-3 text-sm font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+                  <Button className="bg-white text-[#0F172A] hover:bg-slate-100 rounded-full px-7 py-2.5 text-sm font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
                     Join Texas BHA
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
                 <Link to="/committees/consulting" data-testid="hero-learn-btn">
-                  <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-3 text-sm font-medium">
-                    Explore Committees
+                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-7 py-2.5 text-sm">
+                    Our Committees
                   </Button>
                 </Link>
               </div>
@@ -85,14 +82,14 @@ export default function Home() {
                     <img src={LOGO_URL} alt="Texas BHA Logo" className="object-contain mix-blend-screen" style={{ width: '280%', height: '280%', marginTop: '15%' }} />
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 w-20 h-20 rounded-2xl bg-amber-500/20 backdrop-blur-sm flex items-center justify-center">
-                  <Users className="h-8 w-8 text-amber-400" />
+                <div className="absolute -top-3 -right-3 w-16 h-16 rounded-2xl bg-amber-500/15 backdrop-blur-sm flex items-center justify-center border border-amber-500/20">
+                  <Users className="h-6 w-6 text-amber-400" />
                 </div>
-                <div className="absolute -bottom-2 -left-6 w-20 h-20 rounded-2xl bg-blue-500/20 backdrop-blur-sm flex items-center justify-center">
-                  <BookOpen className="h-8 w-8 text-blue-400" />
+                <div className="absolute -bottom-1 -left-5 w-16 h-16 rounded-2xl bg-blue-500/15 backdrop-blur-sm flex items-center justify-center border border-blue-500/20">
+                  <BookOpen className="h-6 w-6 text-blue-400" />
                 </div>
-                <div className="absolute top-1/2 -right-8 w-16 h-16 rounded-xl bg-emerald-500/20 backdrop-blur-sm flex items-center justify-center">
-                  <Lightbulb className="h-6 w-6 text-emerald-400" />
+                <div className="absolute top-1/2 -right-6 w-14 h-14 rounded-xl bg-emerald-500/15 backdrop-blur-sm flex items-center justify-center border border-emerald-500/20">
+                  <Lightbulb className="h-5 w-5 text-emerald-400" />
                 </div>
               </div>
             </div>
@@ -101,9 +98,9 @@ export default function Home() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-[#1E293B] text-white py-6 border-t border-white/5">
+      <section className="bg-[#1E293B] text-white py-5 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
               { num: "5+", label: "University Chapters" },
               { num: "6", label: "Active Committees" },
@@ -111,30 +108,47 @@ export default function Home() {
               { num: "20+", label: "Projects Completed" },
             ].map((stat, i) => (
               <div key={i} data-testid={`stat-${i}`}>
-                <p className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: 'Manrope, sans-serif' }}>{stat.num}</p>
-                <p className="text-slate-400 text-sm mt-1">{stat.label}</p>
+                <p className="text-xl lg:text-2xl font-bold text-white tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>{stat.num}</p>
+                <p className="text-slate-400 text-xs mt-0.5 tracking-wide">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section data-testid="about-section" className="py-20 lg:py-24 bg-white">
+      {/* Institutional Affiliation Banner */}
+      <section className="py-10 bg-white border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            <div className="flex items-center gap-3">
+              <GraduationCap className="h-5 w-5 text-[#BF5700]" />
+              <span className="text-sm font-medium text-slate-700">UT Austin Healthcare Administration Minor</span>
+            </div>
+            <Separator orientation="vertical" className="hidden md:block h-5" />
+            <div className="flex items-center gap-3">
+              <Building2 className="h-5 w-5 text-slate-400" />
+              <span className="text-sm text-slate-500">Student-led organization, faculty-advised</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section data-testid="about-section" className="py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
-              <Badge className="bg-slate-100 text-[#0F172A] border-slate-200 mb-4 text-xs font-medium">About Us</Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                Bridging Business & Healthcare
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">About Texas BHA</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                Where Academic Rigor Meets Industry Impact
               </h2>
-              <p className="mt-4 text-slate-600 leading-relaxed">
-                Texas BHA is a student-led organization dedicated to preparing the next generation of healthcare business leaders. We combine rigorous academic research with real-world consulting to create meaningful impact across the Texas healthcare landscape.
+              <p className="mt-4 text-slate-600 leading-relaxed text-[15px]">
+                Texas BHA operates in partnership with the University of Texas at Austin's Healthcare Administration minor, providing students with an applied extension of their academic studies. Our work bridges classroom learning with real-world healthcare consulting, policy analysis, and community engagement.
               </p>
-              <p className="mt-4 text-slate-600 leading-relaxed">
-                Through our committees, chapters, and partnerships, we provide students with hands-on experience in healthcare consulting, policy analysis, and community health initiatives.
+              <p className="mt-3 text-slate-600 leading-relaxed text-[15px]">
+                Through our five committees and expanding chapter network, we prepare students for careers at the intersection of healthcare and business — in consulting, health systems administration, policy, and entrepreneurship.
               </p>
-              <Link to="/committees" data-testid="about-explore-btn">
+              <Link to="/committees/consulting" data-testid="about-explore-btn">
                 <Button className="mt-6 bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full px-6 text-sm font-semibold">
                   Explore Our Work
                   <ChevronRight className="ml-1 h-4 w-4" />
@@ -145,11 +159,11 @@ export default function Home() {
               <img
                 src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Team collaboration"
-                className="rounded-2xl shadow-lg w-full h-80 object-cover"
+                className="rounded-2xl shadow-md w-full h-72 lg:h-80 object-cover"
               />
-              <div className="absolute -bottom-6 -left-6 bg-[#0F172A] text-white rounded-2xl p-6 shadow-xl">
-                <p className="text-3xl font-bold" style={{ fontFamily: 'Manrope, sans-serif' }}>Est. 2022</p>
-                <p className="text-slate-400 text-sm">Austin, Texas</p>
+              <div className="absolute -bottom-5 -left-5 bg-[#0F172A] text-white rounded-xl p-5 shadow-lg">
+                <p className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Est. 2022</p>
+                <p className="text-slate-400 text-xs mt-0.5">Austin, Texas</p>
               </div>
             </div>
           </div>
@@ -157,58 +171,58 @@ export default function Home() {
       </section>
 
       {/* Photo Banner */}
-      <section className="relative h-48 md:h-64 overflow-hidden">
+      <section className="relative h-40 md:h-52 overflow-hidden">
         <img src="https://images.pexels.com/photos/7108403/pexels-photo-7108403.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Healthcare professionals" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[#0F172A]/40" />
       </section>
 
       {/* Committees Section */}
-      <section data-testid="committees-section" className="py-20 lg:py-24 bg-slate-50">
+      <section data-testid="committees-section" className="py-16 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge className="bg-slate-100 text-[#0F172A] border-slate-200 mb-4 text-xs font-medium">Our Committees</Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          <div className="text-center mb-10">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Our Committees</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Driving Impact Across Healthcare
             </h2>
-            <p className="mt-3 text-slate-500 max-w-2xl mx-auto">
-              Our six specialized committees are the engine of Texas BHA, each focused on a critical area of healthcare business.
+            <p className="mt-2 text-slate-500 max-w-xl mx-auto text-sm">
+              Five specialized committees — each focused on a critical dimension of healthcare business.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {committees.map((committee, idx) => (
               <Card
                 key={committee.id || idx}
                 data-testid={`committee-card-${idx}`}
-                className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 overflow-hidden group"
+                className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden group"
               >
-                <div className="h-48 overflow-hidden">
+                <div className="h-44 overflow-hidden">
                   <img
                     src={committee.photo_url || "https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=600"}
                     alt={committee.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                <CardContent className="p-5">
+                  <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
                     {committee.name}
                   </h3>
-                  <p className="text-slate-500 text-sm mt-2 line-clamp-2">{committee.description}</p>
-                  <div className="flex items-center gap-2 mt-4">
-                    <Users className="h-4 w-4 text-slate-400" />
+                  <p className="text-slate-500 text-sm mt-1.5 line-clamp-2">{committee.description}</p>
+                  <div className="flex items-center gap-2 mt-3">
+                    <Users className="h-3.5 w-3.5 text-slate-400" />
                     <span className="text-xs text-slate-400">{committee.leadership?.join(", ")}</span>
                   </div>
                   <Link to="/committees/consulting" data-testid={`committee-learn-more-${idx}`}>
-                    <Button variant="ghost" size="sm" className="mt-3 text-[#0F172A] hover:text-[#0F172A] hover:bg-slate-50 p-0 h-auto font-medium text-sm">
-                      Learn More <ChevronRight className="ml-1 h-3 w-3" />
+                    <Button variant="ghost" size="sm" className="mt-2 text-[#0F172A] hover:bg-slate-50 p-0 h-auto font-medium text-xs">
+                      Learn More <ChevronRight className="ml-0.5 h-3 w-3" />
                     </Button>
                   </Link>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <div className="text-center mt-8">
             <Link to="/committees/consulting" data-testid="view-all-committees">
-              <Button className="bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full px-8 text-sm font-semibold">
+              <Button className="bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full px-7 text-sm font-semibold">
                 View All Committees
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -217,8 +231,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Team Photos Section */}
-      <section className="py-12 bg-white">
+      {/* Team Photos */}
+      <section className="py-10 bg-white">
         <div className="container-main">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
@@ -237,29 +251,27 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-24 bg-white">
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#0F172A] rounded-3xl p-12 lg:p-16 text-center text-white relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full border border-white/20" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full border border-white/10" />
+          <div className="bg-[#0F172A] rounded-2xl p-10 lg:p-14 text-center text-white relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full border border-white/20" />
             </div>
             <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 Ready to Make an Impact?
               </h2>
-              <p className="mt-4 text-slate-300 max-w-xl mx-auto">
-                Join Texas BHA and become part of a growing community of healthcare business leaders across Texas universities.
+              <p className="mt-3 text-slate-300 max-w-md mx-auto text-sm">
+                Join a growing network of healthcare business leaders at Texas universities.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
+              <div className="flex flex-wrap justify-center gap-3 mt-7">
                 <Link to="/contact" data-testid="cta-join-btn">
-                  <Button className="bg-white text-[#0F172A] hover:bg-slate-100 rounded-full px-8 py-3 text-sm font-semibold shadow-lg">
-                    Get Involved
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button className="bg-white text-[#0F172A] hover:bg-slate-100 rounded-full px-7 py-2.5 text-sm font-semibold shadow-lg">
+                    Get Involved <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
                 <Link to="/committees/expansion" data-testid="cta-chapters-btn">
-                  <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-3 text-sm">
+                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-7 py-2.5 text-sm">
                     Start a Chapter
                   </Button>
                 </Link>
