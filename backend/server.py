@@ -612,6 +612,21 @@ async def seed_database():
     for n in newsletters:
         await db.newsletters.insert_one(n.model_dump())
 
+    # Team Members
+    team_members = [
+        TeamMember(name="Jordan Lee", role="President", category="Executive Board", bio="Senior, Healthcare Administration minor. Leading Texas BHA's strategic vision and institutional partnerships.", photo_url="", order=1),
+        TeamMember(name="Ashley Martinez", role="Vice President", category="Executive Board", bio="Junior, Pre-Med & Business. Overseeing committee operations and cross-functional initiatives.", photo_url="", order=2),
+        TeamMember(name="Chris Walker", role="Treasurer", category="Executive Board", bio="Senior, Finance & Healthcare Admin. Managing organizational finances and sponsorship programs.", photo_url="", order=3),
+        TeamMember(name="Samantha Davis", role="Secretary", category="Executive Board", bio="Junior, Public Health. Managing communications, meeting coordination, and organizational records.", photo_url="", order=4),
+        TeamMember(name="Sarah Mitchell", role="Consulting Committee Lead", category="Committee Leads", bio="Leads our consulting engagements with healthcare organizations across Texas.", photo_url="", order=10),
+        TeamMember(name="Dr. Emily Chen", role="Policy Committee Lead", category="Committee Leads", bio="Directs healthcare policy research and legislative advocacy initiatives.", photo_url="", order=11),
+        TeamMember(name="Michael Chang", role="Expansion Committee Lead", category="Committee Leads", bio="Drives chapter growth at universities across the state.", photo_url="", order=12),
+        TeamMember(name="Rachel Adams", role="Outreach Committee Lead", category="Committee Leads", bio="Manages branding, social media, and event promotion strategy.", photo_url="", order=13),
+        TeamMember(name="Maria Gonzalez", role="Philanthropy Committee Lead", category="Committee Leads", bio="Coordinates community health initiatives and volunteer programs.", photo_url="", order=14),
+    ]
+    for t in team_members:
+        await db.team_members.insert_one(t.model_dump())
+
 # ==================== APP SETUP ====================
 
 app.include_router(api_router)
