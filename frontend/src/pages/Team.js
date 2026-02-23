@@ -77,25 +77,6 @@ export default function Team() {
         </div>
       </section>
 
-      <Separator className="bg-slate-100" />
-
-      {/* Committee Leads */}
-      <section data-testid="committee-leads" className="py-16 lg:py-20 bg-slate-50">
-        <div className="container-main">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Committees</p>
-          <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-            Committee Leads
-          </h2>
-          <p className="text-slate-500 text-sm mt-2 max-w-xl">Each committee is led by a dedicated student leader who guides their team's strategy and output.</p>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-8">
-            {committeLeads.map((member, idx) => (
-              <MemberCard key={member.id || idx} member={member} idx={idx + execBoard.length} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Photo Banner */}
       <section className="relative h-48 overflow-hidden">
         <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Team" className="w-full h-full object-cover" />
