@@ -167,6 +167,16 @@ export default function Navbar() {
                 ))}
 
                 <div className="mt-4 px-4 flex flex-col gap-2">
+                  <a
+                    href="https://calendar.google.com/calendar/u/0?cid=NzExY2ZkYjFhOTQyMzU4MGJkZDI3ZTRhMjMwYjg0MzZjMDcyYzNmMTgyMjc5ZDViODQ2M2RjM2UxODI3ZGVkZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="mobile-nav-calendar-link"
+                    className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-lg"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    View Calendar
+                  </a>
                   <Link to="/admin" onClick={() => setOpen(false)}>
                     <Button variant="outline" className="w-full text-sm">Admin Panel</Button>
                   </Link>
