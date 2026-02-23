@@ -38,7 +38,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3" data-testid="navbar-logo">
             <div className="h-10 w-10 rounded-full bg-[#0F172A] flex items-center justify-center overflow-hidden">
-              <img src={LOGO_URL} alt="Texas BHA" className="h-[200%] w-[200%] object-contain mix-blend-screen" />
+              <img src={LOGO_URL} alt="Texas BHA" className="object-contain mix-blend-screen" style={{ width: '280%', height: '280%', marginTop: '15%' }} />
             </div>
             <span className="font-bold text-lg text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Texas BHA
