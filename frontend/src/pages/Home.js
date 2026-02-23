@@ -122,7 +122,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
             <div className="flex items-center gap-3">
               <GraduationCap className="h-5 w-5 text-[#BF5700]" />
-              <span className="text-sm font-medium text-slate-700">UT Austin Healthcare Administration Minor</span>
+              <span className="text-sm font-medium text-slate-700">Official Student Organization — Healthcare Innovation Initiative Minor</span>
             </div>
             <Separator orientation="vertical" className="hidden md:block h-5" />
             <div className="flex items-center gap-3">
