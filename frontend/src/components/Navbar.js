@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <header
       data-testid="main-navbar"
-      className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60"
+      className="sticky top-0 z-50 w-full border-b border-slate-100/80 bg-white/90 backdrop-blur-lg supports-[backdrop-filter]:bg-white/70"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
