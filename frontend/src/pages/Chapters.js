@@ -23,44 +23,80 @@ const staticChapters = {
 };
 
 function TexasMap() {
-  // Fixed positions for all chapters
+  // Accurate positions based on Texas geography (SVG viewBox 0 0 400 450)
+  // Reference: Texas spans roughly from -106.6 to -93.5 longitude, 25.8 to 36.5 latitude
   const chapterPositions = [
-    { name: "UT Austin", x: 200, y: 240, type: "college" },
-    { name: "Texas A&M", x: 240, y: 220, type: "college" },
-    { name: "Prosper HS", x: 220, y: 120, type: "high_school" },
-    { name: "Bridgeland HS", x: 280, y: 200, type: "high_school" },
-    { name: "Wylie HS", x: 250, y: 140, type: "high_school" },
-    { name: "Round Rock HS", x: 195, y: 220, type: "high_school" },
-    { name: "Travis HS", x: 205, y: 250, type: "high_school" },
+    // Colleges
+    { name: "UT Austin", x: 205, y: 320, type: "college", city: "Austin" },
+    { name: "Texas A&M", x: 240, y: 305, type: "college", city: "College Station" },
+    // High Schools - Dallas area
+    { name: "Prosper HS", x: 215, y: 175, type: "high_school", city: "Prosper" },
+    { name: "Wylie HS", x: 235, y: 185, type: "high_school", city: "Wylie" },
+    // Houston area
+    { name: "Bridgeland HS", x: 275, y: 330, type: "high_school", city: "Cypress" },
+    // Austin area
+    { name: "Round Rock HS", x: 200, y: 305, type: "high_school", city: "Round Rock" },
+    { name: "Travis HS", x: 200, y: 330, type: "high_school", city: "Austin" },
   ];
 
   return (
-    <div className="relative bg-slate-50 rounded-2xl p-8 border border-slate-100">
-      <svg viewBox="0 0 400 400" className="w-full max-w-md mx-auto" fill="none">
-        {/* Simplified Texas outline */}
+    <div className="relative bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+      <div className="absolute top-4 left-4">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
+      </div>
+      <svg viewBox="0 0 400 450" className="w-full max-w-lg mx-auto" fill="none">
+        {/* Texas state outline - more accurate shape */}
         <path
-          d="M120,40 L280,40 L300,60 L310,80 L320,100 L340,120 L350,150 L360,180 L370,210 L380,260 L360,300 L340,320 L300,340 L260,360 L220,370 L180,360 L140,340 L120,320 L100,300 L80,260 L60,220 L50,180 L60,140 L80,100 L100,60 Z"
-          fill="#E2E8F0"
+          d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
+             L315,70 L325,90 L335,110 L345,140 L355,170 L365,200 L372,230 L378,260 L382,290 L380,320 
+             L375,350 L365,375 L350,395 L330,410 L305,420 L275,428 L245,432 L215,430 L185,425 L155,418 
+             L130,408 L110,395 L95,378 L85,355 L78,330 L72,300 L68,270 L65,240 L64,210 L66,180 L70,150 
+             L76,120 L85,90 L95,65 Z"
+          fill="#F1F5F9"
           stroke="#CBD5E1"
           strokeWidth="2"
         />
-        {/* Chapter dots */}
+        
+        {/* Major cities reference dots (subtle) */}
+        <circle cx="215" cy="185" r="2" fill="#E2E8F0" /> {/* Dallas */}
+        <circle cx="280" cy="330" r="2" fill="#E2E8F0" /> {/* Houston */}
+        <circle cx="145" cy="375" r="2" fill="#E2E8F0" /> {/* San Antonio */}
+        
+        {/* Chapter markers */}
         {chapterPositions.map((ch, i) => (
-          <g key={i}>
+          <g key={i} className="cursor-pointer">
+            {/* Outer glow for colleges */}
+            {ch.type === "college" && (
+              <circle 
+                cx={ch.x} 
+                cy={ch.y} 
+                r="16" 
+                fill={ch.name === "UT Austin" ? "#BF5700" : "#0F172A"}
+                opacity="0.15"
+              />
+            )}
+            {/* Main marker */}
             <circle 
               cx={ch.x} 
               cy={ch.y} 
               r={ch.type === "college" ? "10" : "7"} 
-              fill={ch.type === "college" ? "#0F172A" : "#BF5700"} 
-              className="animate-pulse" 
+              fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"} 
+              className="drop-shadow-sm"
             />
-            <circle cx={ch.x} cy={ch.y} r={ch.type === "college" ? "5" : "3"} fill="white" />
+            {/* Inner dot */}
+            <circle 
+              cx={ch.x} 
+              cy={ch.y} 
+              r={ch.type === "college" ? "4" : "2.5"} 
+              fill="white" 
+            />
+            {/* Label */}
             <text 
-              x={ch.x + (ch.type === "college" ? 14 : 10)} 
+              x={ch.x + (ch.type === "college" ? 15 : 11)} 
               y={ch.y + 4} 
               fill="#0F172A" 
-              fontSize={ch.type === "college" ? "10" : "8"} 
-              fontWeight="600" 
+              fontSize={ch.type === "college" ? "11" : "9"} 
+              fontWeight={ch.type === "college" ? "700" : "600"}
               fontFamily="Manrope, sans-serif"
             >
               {ch.name}
@@ -68,14 +104,20 @@ function TexasMap() {
           </g>
         ))}
       </svg>
-      <div className="flex justify-center gap-6 mt-4">
+      
+      {/* Legend */}
+      <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-slate-100">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#0F172A]" />
-          <span className="text-xs text-slate-500">College Chapters</span>
+          <div className="w-4 h-4 rounded-full bg-[#0F172A] flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-white" />
+          </div>
+          <span className="text-xs text-slate-600 font-medium">College Chapters</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#BF5700]" />
-          <span className="text-xs text-slate-500">High School Chapters</span>
+          <div className="w-3 h-3 rounded-full bg-[#BF5700] flex items-center justify-center">
+            <div className="w-1 h-1 rounded-full bg-white" />
+          </div>
+          <span className="text-xs text-slate-600 font-medium">High School Chapters</span>
         </div>
       </div>
     </div>
