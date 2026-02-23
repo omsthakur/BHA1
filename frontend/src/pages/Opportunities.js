@@ -49,7 +49,7 @@ export default function Opportunities() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Academic Program</p>
               </div>
               <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                Healthcare Innovation Initiative Minor
+                Healthcare Reform and Innovation Minor
               </h2>
               <p className="text-slate-600 mt-4 leading-relaxed text-[15px]">
                 The Healthcare Innovation Initiative minor at the University of Texas at Austin equips students with a multidisciplinary understanding of the healthcare industry. The program covers the financial, managerial, legal, and political dimensions of healthcare, preparing graduates for leadership roles across the sector.
