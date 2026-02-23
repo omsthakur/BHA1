@@ -416,14 +416,14 @@ const committeeFields = [
   { key: "description", label: "Description", type: "textarea" },
   { key: "mission", label: "Mission", type: "textarea" },
   { key: "leadership", label: "Leadership", type: "array", hint: "Comma-separated names" },
-  { key: "photo_url", label: "Photo URL", type: "text", placeholder: "https://..." },
+  { key: "photo_url", label: "Photo", type: "image" },
   { key: "order", label: "Display Order", type: "number", defaultValue: "0" },
 ];
 
 const projectFields = [
   { key: "title", label: "Title", type: "text" },
   { key: "description", label: "Description", type: "textarea" },
-  { key: "image_url", label: "Image URL", type: "text", placeholder: "https://..." },
+  { key: "image_url", label: "Project Image", type: "image" },
   { key: "status", label: "Status", type: "select", options: ["ongoing", "completed"] },
   { key: "outcome", label: "Outcome/Impact", type: "textarea" },
   { key: "tags", label: "Tags", type: "array", hint: "Comma-separated tags" },
@@ -439,7 +439,7 @@ const policyFields = [
 
 const galleryFields = [
   { key: "title", label: "Title", type: "text" },
-  { key: "image_url", label: "Image URL", type: "text", placeholder: "https://..." },
+  { key: "image_url", label: "Image", type: "image" },
   { key: "category", label: "Category", type: "select", options: ["Events", "Meetings", "Socials", "Conferences"] },
   { key: "date", label: "Date", type: "text", placeholder: "YYYY-MM-DD" },
 ];
@@ -486,7 +486,7 @@ const teamFields = [
   { key: "role", label: "Role/Title", type: "text" },
   { key: "category", label: "Category", type: "select", options: ["Executive Board", "Committee Leads"] },
   { key: "bio", label: "Bio", type: "textarea" },
-  { key: "photo_url", label: "Photo URL", type: "text", placeholder: "https://..." },
+  { key: "photo_url", label: "Photo", type: "image" },
   { key: "order", label: "Display Order", type: "number", defaultValue: "0" },
 ];
 
