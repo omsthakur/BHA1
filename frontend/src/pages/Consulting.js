@@ -15,7 +15,8 @@ const iconMap = {
 export default function Consulting() {
   const [services, setServices] = useState([]);
   const [projects, setProjects] = useState([]);
-  const scrollRef = useRef(null);
+  const ongoingScrollRef = useRef(null);
+  const completedScrollRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/consulting-services`).then(r => setServices(r.data)).catch(console.error);
@@ -25,10 +26,20 @@ export default function Consulting() {
   const completedProjects = projects.filter(p => p.status === "completed");
   const ongoingProjects = projects.filter(p => p.status === "ongoing");
 
-  const scroll = (direction) => {
-    if (scrollRef.current) {
+  const scrollOngoing = (direction) => {
+    if (ongoingScrollRef.current) {
       const scrollAmount = 340;
-      scrollRef.current.scrollBy({
+      ongoingScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollCompleted = (direction) => {
+    if (completedScrollRef.current) {
+      const scrollAmount = 340;
+      completedScrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
