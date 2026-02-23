@@ -283,43 +283,6 @@ export default function Chapters() {
           </div>
         </div>
       </section>
-                  </div>
-
-                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">{chapter.description}</p>
-
-                  <div className="mt-4 space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-slate-500">
-                      <MapPin className="h-3.5 w-3.5 text-slate-400" />
-                      <span>{chapter.location}</span>
-                    </div>
-                    {chapter.founding_date && (
-                      <div className="flex items-center gap-2 text-sm text-slate-500">
-                        <Calendar className="h-3.5 w-3.5 text-slate-400" />
-                        <span>Founded {new Date(chapter.founding_date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
-                      </div>
-                    )}
-                    {chapter.leadership?.length > 0 && (
-                      <div className="flex items-center gap-2 text-sm text-slate-500">
-                        <Users className="h-3.5 w-3.5 text-slate-400" />
-                        <span>{chapter.leadership.join(", ")}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <Button
-                    data-testid={`chapter-signup-${idx}`}
-                    variant="outline"
-                    size="sm"
-                    className="mt-5 w-full rounded-full text-sm font-medium border-slate-200 hover:bg-slate-50"
-                  >
-                    Join Chapter <ExternalLink className="ml-2 h-3.5 w-3.5" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Start a Chapter CTA */}
       <section className="py-20 bg-white">
