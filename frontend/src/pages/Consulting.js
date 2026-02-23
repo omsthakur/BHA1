@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Target, Settings, BarChart3, Shield, Cpu, Search, ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { Target, Settings, BarChart3, Shield, Cpu, Search, ArrowRight, CheckCircle2, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
