@@ -69,7 +69,7 @@ export default function Opportunities() {
               </div>
 
               <a
-                href="https://www.utexas.edu"
+                href="https://www.mccombs.utexas.edu/centers-initiatives/healthcare-innovation-initiative/undergrad-programs/undergraduate-healthcare-minor/"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="ut-minor-link"
