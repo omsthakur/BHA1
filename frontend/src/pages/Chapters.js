@@ -57,11 +57,11 @@ export default function Chapters() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Committee</Badge>
-          <h1 data-testid="chapters-page-title" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-slate-400 text-xs font-medium uppercase tracking-widest mb-3">Committee</p>
+          <h1 data-testid="chapters-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Expansion
           </h1>
-          <p>Growing our impact across Texas universities. Join or start a chapter at your school.</p>
+          <p className="text-slate-300 mt-4 text-base max-w-2xl">Growing our impact across Texas universities. Join or start a chapter at your school.</p>
         </div>
       </section>
 
