@@ -429,6 +429,7 @@ export default function Admin() {
             <TabsTrigger value="announcements" data-testid="tab-announcements" className="text-xs rounded-lg"><Megaphone className="h-3.5 w-3.5 mr-1" />Announcements</TabsTrigger>
             <TabsTrigger value="consulting" data-testid="tab-consulting" className="text-xs rounded-lg"><SettingsIcon className="h-3.5 w-3.5 mr-1" />Services</TabsTrigger>
             <TabsTrigger value="newsletters" data-testid="tab-newsletters" className="text-xs rounded-lg"><Newspaper className="h-3.5 w-3.5 mr-1" />Newsletters</TabsTrigger>
+            <TabsTrigger value="team" data-testid="tab-team" className="text-xs rounded-lg"><UserCircle className="h-3.5 w-3.5 mr-1" />Team</TabsTrigger>
             <TabsTrigger value="contacts" data-testid="tab-contacts" className="text-xs rounded-lg"><Mail className="h-3.5 w-3.5 mr-1" />Contacts</TabsTrigger>
           </TabsList>
 
