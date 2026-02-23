@@ -86,14 +86,14 @@ export default function Consulting() {
             {ongoingProjects.length > 3 && (
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => scroll('left')}
+                  onClick={() => scrollOngoing('left')}
                   className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
                   data-testid="scroll-left"
                 >
                   <ChevronLeft className="h-5 w-5 text-slate-600" />
                 </button>
                 <button
-                  onClick={() => scroll('right')}
+                  onClick={() => scrollOngoing('right')}
                   className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
                   data-testid="scroll-right"
                 >
