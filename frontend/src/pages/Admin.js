@@ -359,6 +359,15 @@ const newsletterFields = [
   { key: "link", label: "Link/Download URL", type: "text" },
 ];
 
+const teamFields = [
+  { key: "name", label: "Name", type: "text" },
+  { key: "role", label: "Role/Title", type: "text" },
+  { key: "category", label: "Category", type: "select", options: ["Executive Board", "Committee Leads"] },
+  { key: "bio", label: "Bio", type: "textarea" },
+  { key: "photo_url", label: "Photo URL", type: "text", placeholder: "https://..." },
+  { key: "order", label: "Display Order", type: "number", defaultValue: "0" },
+];
+
 export default function Admin() {
   const [token, setToken] = useState(localStorage.getItem("admin_token"));
 
