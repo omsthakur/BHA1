@@ -1,7 +1,7 @@
-/* Custom utility styles for Texas BHA */
+/* Refined utility styles for Texas BHA */
 
 .section-padding {
-    @apply py-20 lg:py-24;
+    @apply py-16 lg:py-20;
 }
 
 .container-main {
@@ -9,34 +9,20 @@
 }
 
 .page-header {
-    @apply bg-[#0F172A] text-white py-20 lg:py-28;
+    @apply bg-[#0F172A] text-white py-16 lg:py-20;
 }
 
 .page-header h1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+    @apply text-4xl sm:text-5xl font-bold tracking-tight;
 }
 
 .page-header p {
-    @apply text-slate-300 mt-4 text-base lg:text-lg max-w-2xl;
+    @apply text-slate-300 mt-4 text-base max-w-2xl;
 }
 
-/* Card hover effects */
+/* Card hover */
 .card-hover {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
-}
-
-/* Image overlay */
-.img-overlay {
-    @apply relative overflow-hidden;
-}
-
-.img-overlay::after {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300;
-}
-
-.img-overlay:hover::after {
-    @apply opacity-100;
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
 }
 
 /* Active nav link */
@@ -44,20 +30,20 @@
     @apply text-[#0F172A] font-semibold;
 }
 
-/* Scrollbar styling */
+/* Refined scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #94a3b8;
+    background: #cbd5e1;
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+    background: #94a3b8;
 }
