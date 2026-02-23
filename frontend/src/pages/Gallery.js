@@ -143,6 +143,121 @@ export default function Gallery() {
         </DialogContent>
       </Dialog>
 
+      {/* Instagram Feed Section */}
+      <section data-testid="instagram-feed" className="py-20 bg-white border-t border-slate-100">
+        <div className="container-main">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <Instagram className="h-6 w-6 text-pink-500" />
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Live Feed</p>
+              </div>
+              <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                Follow @{INSTAGRAM_USERNAME}
+              </h2>
+              <p className="text-slate-500 text-sm mt-2">See our latest posts and updates from Instagram.</p>
+            </div>
+            <a 
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-full text-sm font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            >
+              <Instagram className="h-4 w-4" />
+              Follow Us
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </div>
+          
+          {/* Instagram Embeds Grid */}
+          <div ref={instagramRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Instagram Profile Embed */}
+            <div className="col-span-full lg:col-span-1">
+              <blockquote 
+                className="instagram-media" 
+                data-instgrm-permalink={INSTAGRAM_URL}
+                data-instgrm-version="14"
+                style={{
+                  background: '#FFF',
+                  border: 0,
+                  borderRadius: '12px',
+                  boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+                  margin: '1px',
+                  maxWidth: '540px',
+                  minWidth: '326px',
+                  padding: 0,
+                  width: '100%'
+                }}
+              >
+                <div style={{ padding: '16px' }}>
+                  <a 
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-[#0F172A] no-underline"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 flex items-center justify-center">
+                      <Instagram className="h-5 w-5 text-white" />
+                    </div>
+                    <span className="font-semibold">@{INSTAGRAM_USERNAME}</span>
+                  </a>
+                </div>
+              </blockquote>
+            </div>
+
+            {/* Feed Preview Cards */}
+            <div className="col-span-full lg:col-span-2">
+              <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 flex items-center justify-center">
+                    <Instagram className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Texas BHA</h3>
+                    <p className="text-slate-500 text-sm">@{INSTAGRAM_USERNAME}</p>
+                  </div>
+                </div>
+                
+                <p className="text-slate-600 mb-6">
+                  Stay connected with Texas Business Healthcare Association! Follow us for event updates, project highlights, member spotlights, and healthcare industry insights.
+                </p>
+
+                <div className="grid grid-cols-3 gap-2 mb-6">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <div key={i} className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg flex items-center justify-center group cursor-pointer hover:from-pink-100 hover:to-purple-100 transition-all">
+                      <Instagram className="h-6 w-6 text-slate-300 group-hover:text-pink-400 transition-colors" />
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#0F172A] text-white rounded-xl font-semibold text-sm hover:bg-[#1E293B] transition-colors"
+                >
+                  View Instagram Profile
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Follow Button */}
+          <div className="mt-6 md:hidden">
+            <a 
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-full text-sm font-semibold"
+            >
+              <Instagram className="h-4 w-4" />
+              Follow @{INSTAGRAM_USERNAME}
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Social Links */}
       <section className="py-16 bg-slate-50">
         <div className="container-main text-center">
