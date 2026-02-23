@@ -16,6 +16,7 @@ const moreLinks = [
   { label: "Outreach", path: "/committees/outreach" },
   { label: "Gallery", path: "/gallery" },
   { label: "Newsletter", path: "/newsletter" },
+  { label: "Our Team", path: "/team" },
   { label: "Opportunities", path: "/opportunities" },
   { label: "Contact Us", path: "/contact" },
 ];
