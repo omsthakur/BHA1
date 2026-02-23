@@ -82,15 +82,6 @@ export default function Home() {
                     <img src={LOGO_URL} alt="Texas BHA Logo" className="object-contain mix-blend-screen" style={{ width: '280%', height: '280%', marginTop: '15%' }} />
                   </div>
                 </div>
-                <div className="absolute -top-3 -right-3 w-16 h-16 rounded-2xl bg-amber-500/15 backdrop-blur-sm flex items-center justify-center border border-amber-500/20">
-                  <Users className="h-6 w-6 text-amber-400" />
-                </div>
-                <div className="absolute -bottom-1 -left-5 w-16 h-16 rounded-2xl bg-blue-500/15 backdrop-blur-sm flex items-center justify-center border border-blue-500/20">
-                  <BookOpen className="h-6 w-6 text-blue-400" />
-                </div>
-                <div className="absolute top-1/2 -right-6 w-14 h-14 rounded-xl bg-emerald-500/15 backdrop-blur-sm flex items-center justify-center border border-emerald-500/20">
-                  <Lightbulb className="h-5 w-5 text-emerald-400" />
-                </div>
               </div>
             </div>
           </div>

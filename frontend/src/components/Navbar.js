@@ -100,6 +100,16 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
+            <a
+              href="https://calendar.google.com/calendar/u/0?cid=NzExY2ZkYjFhOTQyMzU4MGJkZDI3ZTRhMjMwYjg0MzZjMDcyYzNmMTgyMjc5ZDViODQ2M2RjM2UxODI3ZGVkZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="nav-calendar-link"
+              className="p-2 text-slate-500 hover:text-[#0F172A] hover:bg-slate-50 rounded-lg transition-colors"
+              title="View Calendar"
+            >
+              <Calendar className="h-5 w-5" />
+            </a>
             <Link to="/admin" data-testid="admin-link">
               <Button variant="ghost" size="sm" className="text-slate-500 text-xs">Admin</Button>
             </Link>
