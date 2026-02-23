@@ -29,11 +29,11 @@ export default function Consulting() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Committee</Badge>
-          <h1 data-testid="consulting-page-title" style={{ fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-slate-400 text-xs font-medium uppercase tracking-widest mb-3">Committee</p>
+          <h1 data-testid="consulting-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Consulting & Projects
           </h1>
-          <p>Delivering data-driven solutions and hands-on consulting to healthcare organizations across Texas.</p>
+          <p className="text-slate-300 mt-4 text-base max-w-2xl">Delivering data-driven solutions and applied consulting to healthcare organizations across Texas.</p>
         </div>
       </section>
 
