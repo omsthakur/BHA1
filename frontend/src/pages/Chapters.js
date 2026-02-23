@@ -23,19 +23,19 @@ const staticChapters = {
 };
 
 function TexasMap() {
-  // Accurate positions based on Texas geography (SVG viewBox 0 0 400 450)
+  // Chapter positions adjusted to fit within the Texas shape
   const chapterPositions = [
     // Colleges
-    { name: "UT Austin", x: 205, y: 320, type: "college", city: "Austin" },
-    { name: "Texas A&M", x: 255, y: 300, type: "college", city: "College Station" },
-    // High Schools - Dallas area
-    { name: "Prosper HS", x: 215, y: 175, type: "high_school", city: "Prosper" },
-    { name: "Wylie HS", x: 245, y: 190, type: "high_school", city: "Wylie" },
+    { name: "UT Austin", x: 180, y: 280, type: "college" },
+    { name: "Texas A&M", x: 220, y: 265, type: "college" },
+    // High Schools - Dallas/North Texas area
+    { name: "Prosper HS", x: 200, y: 130, type: "high_school" },
+    { name: "Wylie HS", x: 230, y: 145, type: "high_school" },
     // Houston area
-    { name: "Bridgeland HS", x: 285, y: 340, type: "high_school", city: "Cypress" },
+    { name: "Bridgeland HS", x: 260, y: 290, type: "high_school" },
     // Austin area
-    { name: "Round Rock HS", x: 195, y: 295, type: "high_school", city: "Round Rock" },
-    { name: "Travis HS", x: 195, y: 340, type: "high_school", city: "Austin" },
+    { name: "Round Rock HS", x: 170, y: 260, type: "high_school" },
+    { name: "Travis HS", x: 175, y: 295, type: "high_school" },
   ];
 
   return (
@@ -43,14 +43,14 @@ function TexasMap() {
       <div className="absolute top-4 left-4 z-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
       </div>
-      <svg viewBox="0 0 400 450" className="w-full max-w-lg mx-auto" fill="none">
-        {/* Texas state outline - more accurate shape */}
+      <svg viewBox="0 0 400 400" className="w-full max-w-lg mx-auto" fill="none">
+        {/* Texas state outline */}
         <path
           d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
-             L315,70 L325,90 L335,110 L345,140 L355,170 L365,200 L372,230 L378,260 L382,290 L380,320 
-             L375,350 L365,375 L350,395 L330,410 L305,420 L275,428 L245,432 L215,430 L185,425 L155,418 
-             L130,408 L110,395 L95,378 L85,355 L78,330 L72,300 L68,270 L65,240 L64,210 L66,180 L70,150 
-             L76,120 L85,90 L95,65 Z"
+             L315,70 L325,90 L335,110 L340,130 L345,160 L350,190 L355,220 L358,250 L355,280 
+             L350,310 L340,335 L325,355 L305,370 L280,380 L250,385 L220,382 L190,378 L160,370 
+             L135,358 L115,340 L100,318 L90,290 L82,260 L78,230 L76,200 L78,170 L84,140 
+             L92,110 L100,80 Z"
           fill="#F1F5F9"
           stroke="#CBD5E1"
           strokeWidth="2"
@@ -71,7 +71,7 @@ function TexasMap() {
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "12" : "8"} 
+              r={ch.type === "college" ? "10" : "7"} 
               fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"} 
               stroke="white"
               strokeWidth="2"
@@ -80,27 +80,17 @@ function TexasMap() {
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "4" : "3"} 
+              r={ch.type === "college" ? "3" : "2"} 
               fill="white" 
-            />
-            {/* Label background for readability */}
-            <rect
-              x={ch.x + (ch.type === "college" ? 16 : 12)}
-              y={ch.y - 8}
-              width={ch.name.length * 6 + 8}
-              height="16"
-              rx="3"
-              fill="white"
-              opacity="0.9"
             />
             {/* Label */}
             <text 
-              x={ch.x + (ch.type === "college" ? 20 : 16)} 
+              x={ch.x + (ch.type === "college" ? 14 : 10)} 
               y={ch.y + 4} 
               fill="#0F172A" 
-              fontSize={ch.type === "college" ? "11" : "10"} 
+              fontSize={ch.type === "college" ? "10" : "9"} 
               fontWeight="600"
-              fontFamily="Manrope, sans-serif"
+              fontFamily="sans-serif"
             >
               {ch.name}
             </text>
