@@ -3,10 +3,24 @@ import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Calendar, Users, ExternalLink, ArrowRight } from "lucide-react";
+import { MapPin, Calendar, Users, ExternalLink, ArrowRight, User, GraduationCap, School } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
+// Static chapter data for high schools and colleges
+const staticChapters = {
+  highSchools: [
+    { name: "Prosper High School", location: "Prosper, TX", type: "high_school" },
+    { name: "Bridgeland High School", location: "Cypress, TX", type: "high_school" },
+    { name: "Wylie High School", location: "Wylie, TX", type: "high_school" },
+    { name: "Round Rock High School", location: "Round Rock, TX", type: "high_school" },
+    { name: "Travis High School", location: "Austin, TX", type: "high_school" },
+  ],
+  colleges: [
+    { name: "Texas A&M University", location: "College Station, TX", type: "college" },
+  ]
+};
 
 function TexasMap({ chapters }) {
   return (
