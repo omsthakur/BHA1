@@ -40,7 +40,7 @@ export default function Outreach() {
                 Building Our Brand & Community
               </h2>
               <p className="text-slate-600 mt-4 leading-relaxed text-[15px]">
-                The Outreach & Marketing Committee is responsible for growing the Texas BHA brand, managing our social media presence, and creating compelling content that attracts new members, sponsors, and partners. As the public face of an organization affiliated with UT Austin's Healthcare Administration minor, we uphold a standard of professionalism and institutional credibility in all communications.
+                The Outreach & Marketing Committee is responsible for growing the Texas BHA brand, managing our social media presence, and creating compelling content that attracts new members, sponsors, and partners. As the public face of an organization affiliated with UT Austin's HEALTHCARE REFORM & INNOVATION minor, we uphold a standard of professionalism and institutional credibility in all communications.
               </p>
               <ul className="mt-5 space-y-2.5">
                 {["Social media strategy and content creation", "Event promotion and digital marketing campaigns", "Brand identity and visual standards", "Newsletter production and distribution", "Partnership outreach and sponsor recruitment"].map((item, i) => (

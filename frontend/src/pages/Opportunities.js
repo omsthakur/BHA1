@@ -39,7 +39,7 @@ export default function Opportunities() {
         </div>
       </section>
 
-      {/* Healthcare Reform and Innovation Minor — TOP */}
+      {/* HEALTHCARE REFORM & INNOVATION Minor — TOP */}
       <section data-testid="minor-section" className="py-16 lg:py-20 bg-white">
         <div className="container-main">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -49,10 +49,10 @@ export default function Opportunities() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Academic Program</p>
               </div>
               <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                Healthcare Reform and Innovation Minor
+                HEALTHCARE REFORM & INNOVATION Minor
               </h2>
               <p className="text-slate-600 mt-4 leading-relaxed text-[15px]">
-                The Healthcare Innovation Initiative minor at the University of Texas at Austin equips students with a multidisciplinary understanding of the healthcare industry. The program covers the financial, managerial, legal, and political dimensions of healthcare, preparing graduates for leadership roles across the sector.
+                The HEALTHCARE REFORM & INNOVATION minor at the University of Texas at Austin equips students with a multidisciplinary understanding of the healthcare industry. The program covers the financial, managerial, legal, and political dimensions of healthcare, preparing graduates for leadership roles across the sector.
               </p>
               <p className="text-slate-600 mt-3 leading-relaxed text-[15px]">
                 As the official student organization of this minor, Texas BHA provides a hands-on complement to the academic curriculum — offering real consulting projects, policy research, and professional development opportunities.

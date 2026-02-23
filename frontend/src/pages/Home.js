@@ -46,7 +46,7 @@ export default function Home() {
             <div className="animate-fade-in-up">
               <div className="flex items-center gap-2 mb-6">
                 <div className="h-px w-8 bg-amber-400" />
-                <span className="text-xs font-medium uppercase tracking-widest text-amber-400">Official Student Org — Healthcare Innovation Initiative Minor, UT Austin</span>
+                <span className="text-xs font-medium uppercase tracking-widest text-amber-400">Official Student Org — HEALTHCARE REFORM & INNOVATION Minor, UT Austin</span>
               </div>
               <h1
                 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]"
@@ -113,7 +113,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
             <div className="flex items-center gap-3">
               <GraduationCap className="h-5 w-5 text-[#BF5700]" />
-              <span className="text-sm font-medium text-slate-700">Official Student Organization — Healthcare Innovation Initiative Minor</span>
+              <span className="text-sm font-medium text-slate-700">Official Student Organization — HEALTHCARE REFORM & INNOVATION Minor</span>
             </div>
             <Separator orientation="vertical" className="hidden md:block h-5" />
             <div className="flex items-center gap-3">
@@ -134,7 +134,7 @@ export default function Home() {
                 Where Academic Rigor Meets Industry Impact
               </h2>
               <p className="mt-4 text-slate-600 leading-relaxed text-[15px]">
-                The Texas Business Healthcare Association is the official student organization of the Healthcare Innovation Initiative minor. Texas BHA is focused on fostering the next generation of healthcare pioneers by exposing students to the financial, managerial, legal, political, and consulting aspects of the healthcare industry through committees, projects, and social programming.
+                The Texas Business Healthcare Association is the official student organization of the HEALTHCARE REFORM & INNOVATION minor. Texas BHA is focused on fostering the next generation of healthcare pioneers by exposing students to the financial, managerial, legal, political, and consulting aspects of the healthcare industry through committees, projects, and social programming.
               </p>
               <p className="mt-3 text-slate-600 leading-relaxed text-[15px]">
                 Through our five committees and expanding chapter network, we prepare students for careers at the intersection of healthcare and business — in consulting, health systems administration, policy, and entrepreneurship.
