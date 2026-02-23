@@ -105,7 +105,7 @@ export default function Consulting() {
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Ongoing Projects</h2>
           <p className="text-slate-500 text-sm mt-2 mb-8 max-w-2xl">Active initiatives making progress across our teams.</p>
           <div 
-            ref={scrollRef}
+            ref={ongoingScrollRef}
             className="flex gap-5 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
