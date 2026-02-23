@@ -90,8 +90,7 @@ export default function Chapters() {
     axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
     axios.get(`${API}/team`).then(r => {
       const chairs = r.data.filter(m => 
-        m.role?.toLowerCase().includes('expansion') || 
-        m.category === 'Expansion Chairs'
+        m.category === 'Expansion Chair'
       );
       setExpansionChairs(chairs);
     }).catch(console.error);
