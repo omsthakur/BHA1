@@ -41,7 +41,9 @@ function AdminLogin({ onLogin }) {
       <Card className="w-full max-w-md border border-slate-200 shadow-lg">
         <CardContent className="p-8">
           <div className="text-center mb-8">
-            <img src={LOGO_URL} alt="Texas BHA" className="h-16 w-16 mx-auto rounded-full bg-[#0F172A] p-2" />
+            <div className="h-16 w-16 mx-auto rounded-full bg-[#0F172A] overflow-hidden flex items-center justify-center">
+              <img src={LOGO_URL} alt="Texas BHA" className="h-[200%] w-[200%] object-contain mix-blend-screen" />
+            </div>
             <h1 className="text-2xl font-bold text-[#0F172A] mt-4" style={{ fontFamily: 'Manrope, sans-serif' }}>Admin Panel</h1>
             <p className="text-slate-500 text-sm mt-1">Sign in to manage Texas BHA content</p>
           </div>
