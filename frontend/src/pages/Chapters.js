@@ -145,7 +145,11 @@ export default function Chapters() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <p className="text-slate-400 text-xs font-medium uppercase tracking-widest mb-3">Committee</p>
+          <div className="flex items-center gap-3 mb-3">
+            <p className="text-slate-400 text-xs font-medium uppercase tracking-widest">Committee</p>
+            <span className="text-slate-500">•</span>
+            <p className="text-amber-400 text-xs font-medium uppercase tracking-widest">Est. 2019</p>
+          </div>
           <h1 data-testid="chapters-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Expansion
           </h1>
