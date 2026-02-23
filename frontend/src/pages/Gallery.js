@@ -169,75 +169,91 @@ export default function Gallery() {
             </a>
           </div>
           
-          {/* Instagram Embeds Grid */}
-          <div ref={instagramRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Instagram Profile Embed */}
-            <div className="col-span-full lg:col-span-1">
-              <blockquote 
-                className="instagram-media" 
-                data-instgrm-permalink={INSTAGRAM_URL}
-                data-instgrm-version="14"
-                style={{
-                  background: '#FFF',
-                  border: 0,
-                  borderRadius: '12px',
-                  boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
-                  margin: '1px',
-                  maxWidth: '540px',
-                  minWidth: '326px',
-                  padding: 0,
-                  width: '100%'
-                }}
-              >
-                <div style={{ padding: '16px' }}>
+          {/* Instagram Feed Display */}
+          <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 overflow-hidden">
+            {/* Profile Header */}
+            <div className="p-6 border-b border-slate-100">
+              <div className="flex items-center gap-4">
+                <a 
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 p-[3px] flex-shrink-0"
+                >
+                  <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
+                    <Instagram className="h-8 w-8 text-pink-500" />
+                  </div>
+                </a>
+                <div className="flex-1">
                   <a 
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-[#0F172A] no-underline"
+                    className="flex items-center gap-2 hover:opacity-80 transition-opacity"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 flex items-center justify-center">
-                      <Instagram className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="font-semibold">@{INSTAGRAM_USERNAME}</span>
+                    <h3 className="font-bold text-xl text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Texas BHA</h3>
+                    <svg className="h-5 w-5 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
                   </a>
+                  <p className="text-slate-500 text-sm">@{INSTAGRAM_USERNAME}</p>
+                  <p className="text-slate-600 text-sm mt-2">Official Instagram of Texas Business Healthcare Association | UT Austin</p>
                 </div>
-              </blockquote>
-            </div>
-
-            {/* Feed Preview Cards */}
-            <div className="col-span-full lg:col-span-2">
-              <div className="bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-500 flex items-center justify-center">
-                    <Instagram className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>Texas BHA</h3>
-                    <p className="text-slate-500 text-sm">@{INSTAGRAM_USERNAME}</p>
-                  </div>
-                </div>
-                
-                <p className="text-slate-600 mb-6">
-                  Stay connected with Texas Business Healthcare Association! Follow us for event updates, project highlights, member spotlights, and healthcare industry insights.
-                </p>
-
-                <div className="grid grid-cols-3 gap-2 mb-6">
-                  {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div key={i} className="aspect-square bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg flex items-center justify-center group cursor-pointer hover:from-pink-100 hover:to-purple-100 transition-all">
-                      <Instagram className="h-6 w-6 text-slate-300 group-hover:text-pink-400 transition-colors" />
-                    </div>
-                  ))}
-                </div>
-
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#0F172A] text-white rounded-xl font-semibold text-sm hover:bg-[#1E293B] transition-colors"
+                  className="hidden sm:flex px-6 py-2 bg-[#0F172A] text-white rounded-lg font-semibold text-sm hover:bg-[#1E293B] transition-colors"
                 >
-                  View Instagram Profile
-                  <ExternalLink className="h-4 w-4" />
+                  View Profile
+                </a>
+              </div>
+            </div>
+
+            {/* Posts Grid - Clickable to Instagram */}
+            <a 
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-4"
+            >
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+                {[
+                  { gradient: "from-pink-400 to-purple-500" },
+                  { gradient: "from-orange-400 to-pink-500" },
+                  { gradient: "from-purple-400 to-indigo-500" },
+                  { gradient: "from-yellow-400 to-orange-500" },
+                  { gradient: "from-pink-500 to-rose-500" },
+                  { gradient: "from-indigo-400 to-purple-500" },
+                ].map((item, i) => (
+                  <div 
+                    key={i} 
+                    className={`aspect-square bg-gradient-to-br ${item.gradient} rounded-lg flex items-center justify-center group cursor-pointer hover:opacity-90 transition-all hover:scale-[1.02]`}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                      <Instagram className="h-5 w-5 text-white" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center text-slate-400 text-sm mt-4">Click to view our latest posts on Instagram</p>
+            </a>
+
+            {/* Call to Action */}
+            <div className="p-6 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="text-white text-center sm:text-left">
+                  <p className="font-bold text-lg">Stay Connected!</p>
+                  <p className="text-white/80 text-sm">Follow us for event updates, project highlights, and healthcare insights.</p>
+                </div>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-6 py-3 bg-white text-pink-500 rounded-full font-semibold text-sm hover:shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+                >
+                  <Instagram className="h-5 w-5" />
+                  Follow @{INSTAGRAM_USERNAME}
                 </a>
               </div>
             </div>
