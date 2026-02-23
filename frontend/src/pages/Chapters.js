@@ -24,24 +24,23 @@ const staticChapters = {
 
 function TexasMap() {
   // Accurate positions based on Texas geography (SVG viewBox 0 0 400 450)
-  // Reference: Texas spans roughly from -106.6 to -93.5 longitude, 25.8 to 36.5 latitude
   const chapterPositions = [
     // Colleges
     { name: "UT Austin", x: 205, y: 320, type: "college", city: "Austin" },
-    { name: "Texas A&M", x: 240, y: 305, type: "college", city: "College Station" },
+    { name: "Texas A&M", x: 255, y: 300, type: "college", city: "College Station" },
     // High Schools - Dallas area
     { name: "Prosper HS", x: 215, y: 175, type: "high_school", city: "Prosper" },
-    { name: "Wylie HS", x: 235, y: 185, type: "high_school", city: "Wylie" },
+    { name: "Wylie HS", x: 245, y: 190, type: "high_school", city: "Wylie" },
     // Houston area
-    { name: "Bridgeland HS", x: 275, y: 330, type: "high_school", city: "Cypress" },
+    { name: "Bridgeland HS", x: 285, y: 340, type: "high_school", city: "Cypress" },
     // Austin area
-    { name: "Round Rock HS", x: 200, y: 305, type: "high_school", city: "Round Rock" },
-    { name: "Travis HS", x: 200, y: 330, type: "high_school", city: "Austin" },
+    { name: "Round Rock HS", x: 195, y: 295, type: "high_school", city: "Round Rock" },
+    { name: "Travis HS", x: 195, y: 340, type: "high_school", city: "Austin" },
   ];
 
   return (
     <div className="relative bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-4 left-4 z-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
       </div>
       <svg viewBox="0 0 400 450" className="w-full max-w-lg mx-auto" fill="none">
@@ -57,46 +56,50 @@ function TexasMap() {
           strokeWidth="2"
         />
         
-        {/* Major cities reference dots (subtle) */}
-        <circle cx="215" cy="185" r="2" fill="#E2E8F0" /> {/* Dallas */}
-        <circle cx="280" cy="330" r="2" fill="#E2E8F0" /> {/* Houston */}
-        <circle cx="145" cy="375" r="2" fill="#E2E8F0" /> {/* San Antonio */}
-        
         {/* Chapter markers */}
         {chapterPositions.map((ch, i) => (
-          <g key={i} className="cursor-pointer">
-            {/* Outer glow for colleges */}
-            {ch.type === "college" && (
-              <circle 
-                cx={ch.x} 
-                cy={ch.y} 
-                r="16" 
-                fill={ch.name === "UT Austin" ? "#BF5700" : "#0F172A"}
-                opacity="0.15"
-              />
-            )}
+          <g key={i}>
+            {/* Outer glow */}
+            <circle 
+              cx={ch.x} 
+              cy={ch.y} 
+              r={ch.type === "college" ? "18" : "14"} 
+              fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"}
+              opacity="0.2"
+            />
             {/* Main marker */}
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "10" : "7"} 
+              r={ch.type === "college" ? "12" : "8"} 
               fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"} 
-              className="drop-shadow-sm"
+              stroke="white"
+              strokeWidth="2"
             />
             {/* Inner dot */}
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "4" : "2.5"} 
+              r={ch.type === "college" ? "4" : "3"} 
               fill="white" 
+            />
+            {/* Label background for readability */}
+            <rect
+              x={ch.x + (ch.type === "college" ? 16 : 12)}
+              y={ch.y - 8}
+              width={ch.name.length * 6 + 8}
+              height="16"
+              rx="3"
+              fill="white"
+              opacity="0.9"
             />
             {/* Label */}
             <text 
-              x={ch.x + (ch.type === "college" ? 15 : 11)} 
+              x={ch.x + (ch.type === "college" ? 20 : 16)} 
               y={ch.y + 4} 
               fill="#0F172A" 
-              fontSize={ch.type === "college" ? "11" : "9"} 
-              fontWeight={ch.type === "college" ? "700" : "600"}
+              fontSize={ch.type === "college" ? "11" : "10"} 
+              fontWeight="600"
               fontFamily="Manrope, sans-serif"
             >
               {ch.name}
@@ -108,14 +111,14 @@ function TexasMap() {
       {/* Legend */}
       <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-slate-100">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-[#0F172A] flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-white" />
+          <div className="w-5 h-5 rounded-full bg-[#0F172A] flex items-center justify-center border-2 border-white shadow-sm">
+            <div className="w-2 h-2 rounded-full bg-white" />
           </div>
           <span className="text-xs text-slate-600 font-medium">College Chapters</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#BF5700] flex items-center justify-center">
-            <div className="w-1 h-1 rounded-full bg-white" />
+          <div className="w-4 h-4 rounded-full bg-[#BF5700] flex items-center justify-center border-2 border-white shadow-sm">
+            <div className="w-1.5 h-1.5 rounded-full bg-white" />
           </div>
           <span className="text-xs text-slate-600 font-medium">High School Chapters</span>
         </div>
