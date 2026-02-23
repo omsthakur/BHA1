@@ -23,19 +23,18 @@ const staticChapters = {
 };
 
 function TexasMap() {
-  // Chapter positions adjusted to fit within the Texas shape
+  // Chapter positions - centered within Texas shape (viewBox 50 30 350 380)
   const chapterPositions = [
-    // Colleges
-    { name: "UT Austin", x: 180, y: 280, type: "college" },
-    { name: "Texas A&M", x: 220, y: 265, type: "college" },
-    // High Schools - Dallas/North Texas area
-    { name: "Prosper HS", x: 200, y: 130, type: "high_school" },
-    { name: "Wylie HS", x: 230, y: 145, type: "high_school" },
+    // North Texas / Dallas area
+    { name: "Prosper HS", x: 195, y: 95, type: "high_school" },
+    { name: "Wylie HS", x: 225, y: 105, type: "high_school" },
+    // Central Texas / Austin area  
+    { name: "Round Rock HS", x: 165, y: 215, type: "high_school" },
+    { name: "UT Austin", x: 175, y: 235, type: "college" },
+    { name: "Travis HS", x: 170, y: 255, type: "high_school" },
+    { name: "Texas A&M", x: 220, y: 225, type: "college" },
     // Houston area
-    { name: "Bridgeland HS", x: 260, y: 290, type: "high_school" },
-    // Austin area
-    { name: "Round Rock HS", x: 170, y: 260, type: "high_school" },
-    { name: "Travis HS", x: 175, y: 295, type: "high_school" },
+    { name: "Bridgeland HS", x: 265, y: 260, type: "high_school" },
   ];
 
   return (
@@ -43,8 +42,8 @@ function TexasMap() {
       <div className="absolute top-4 left-4 z-10">
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Established 2019</p>
       </div>
-      <svg viewBox="0 0 400 400" className="w-full max-w-lg mx-auto" fill="none">
-        {/* Texas state outline */}
+      <svg viewBox="50 30 350 380" className="w-full max-w-lg mx-auto" fill="none">
+        {/* Texas state outline - simplified */}
         <path
           d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
              L315,70 L325,90 L335,110 L340,130 L345,160 L350,190 L355,220 L358,250 L355,280 
@@ -63,15 +62,15 @@ function TexasMap() {
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "18" : "14"} 
+              r={ch.type === "college" ? "16" : "12"} 
               fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"}
-              opacity="0.2"
+              opacity="0.25"
             />
             {/* Main marker */}
             <circle 
               cx={ch.x} 
               cy={ch.y} 
-              r={ch.type === "college" ? "10" : "7"} 
+              r={ch.type === "college" ? "9" : "6"} 
               fill={ch.type === "college" ? (ch.name === "UT Austin" ? "#BF5700" : "#0F172A") : "#BF5700"} 
               stroke="white"
               strokeWidth="2"
@@ -85,12 +84,12 @@ function TexasMap() {
             />
             {/* Label */}
             <text 
-              x={ch.x + (ch.type === "college" ? 14 : 10)} 
+              x={ch.x + (ch.type === "college" ? 13 : 10)} 
               y={ch.y + 4} 
               fill="#0F172A" 
-              fontSize={ch.type === "college" ? "10" : "9"} 
+              fontSize="9" 
               fontWeight="600"
-              fontFamily="sans-serif"
+              fontFamily="Arial, sans-serif"
             >
               {ch.name}
             </text>
