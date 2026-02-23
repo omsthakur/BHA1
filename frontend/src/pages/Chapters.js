@@ -84,6 +84,20 @@ function TexasMap() {
 
 export default function Chapters() {
   const [chapters, setChapters] = useState([]);
+  const [expansionChairs, setExpansionChairs] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
+    axios.get(`${API}/team`).then(r => {
+      const chairs = r.data.filter(m => 
+        m.role?.toLowerCase().includes('expansion') || 
+        m.category === 'Expansion Chairs'
+      );
+      setExpansionChairs(chairs);
+    }).catch(console.error);
+  }, []);
+
+  const totalChapters = staticChapters.highSchools.length + staticChapters.colleges.length + 1; // +1 for UT Austin
 
   useEffect(() => {
     axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
