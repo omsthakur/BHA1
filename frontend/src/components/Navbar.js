@@ -8,11 +8,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/0ijxjfll_image.png";
 
 const committeeLinks = [
-  { label: "Philanthropy", path: "/committees/philanthropy" },
   { label: "Consulting", path: "/committees/consulting" },
   { label: "Policy", path: "/committees/policy" },
   { label: "Expansion", path: "/committees/expansion" },
-  { label: "Outreach/Marketing", path: "/committees/outreach" },
+  { label: "Outreach", path: "/committees/outreach" },
+  { label: "Philanthropy", path: "/committees/philanthropy" },
 ];
 
 const topLinks = [
@@ -20,6 +20,7 @@ const topLinks = [
   { label: "Gallery", path: "/gallery" },
   { label: "Newsletter", path: "/newsletter" },
   { label: "Opportunities", path: "/opportunities" },
+  { label: "Team", path: "/team" },
   { label: "Contact", path: "/contact" },
 ];
 
