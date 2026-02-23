@@ -10,9 +10,9 @@ export default function Philanthropy() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container-main">
-          <Badge className="bg-white/10 text-amber-400 border-amber-400/20 mb-4 text-xs">Committee</Badge>
-          <h1 data-testid="philanthropy-page-title" style={{ fontFamily: 'Manrope, sans-serif' }}>Philanthropy</h1>
-          <p>Making healthcare accessible through community service, charitable partnerships, and volunteer initiatives.</p>
+          <p className="text-slate-400 text-xs font-medium uppercase tracking-widest mb-3">Committee</p>
+          <h1 data-testid="philanthropy-page-title" className="text-4xl sm:text-5xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Philanthropy</h1>
+          <p className="text-slate-300 mt-4 text-base max-w-2xl">Making healthcare accessible through community service, charitable partnerships, and volunteer initiatives.</p>
         </div>
       </section>
 
