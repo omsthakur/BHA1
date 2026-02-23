@@ -74,6 +74,114 @@ function AdminLogin({ onLogin }) {
   );
 }
 
+// Image Upload Component
+function ImageUploadField({ value, onChange, label }) {
+  const [uploading, setUploading] = useState(false);
+  const [preview, setPreview] = useState(value || "");
+  const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    setPreview(value || "");
+  }, [value]);
+
+  const handleFileSelect = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/heic', 'image/heif'];
+    if (!allowedTypes.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|heic|heif)$/i)) {
+      toast.error("Please select a valid image file (JPG, PNG, GIF, WebP, SVG, etc.)");
+      return;
+    }
+
+    // Check file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("File size must be less than 10MB");
+      return;
+    }
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await axios.post(`${API}/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      const fullUrl = `${API.replace('/api', '')}${res.data.url}`;
+      setPreview(fullUrl);
+      onChange(fullUrl);
+      toast.success("Image uploaded successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.detail || "Failed to upload image");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleRemove = () => {
+    setPreview("");
+    onChange("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
+  return (
+    <div>
+      <Label className="text-sm font-medium text-slate-700">{label}</Label>
+      <div className="mt-1.5">
+        {preview ? (
+          <div className="relative inline-block">
+            <img 
+              src={preview} 
+              alt="Preview" 
+              className="h-32 w-32 object-cover rounded-lg border border-slate-200"
+              onError={(e) => {
+                e.target.src = "https://via.placeholder.com/128?text=Image";
+              }}
+            />
+            <button
+              type="button"
+              onClick={handleRemove}
+              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        ) : (
+          <div 
+            onClick={() => !uploading && fileInputRef.current?.click()}
+            className={`w-full h-32 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-slate-400 hover:bg-slate-50 transition-all ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            {uploading ? (
+              <>
+                <Loader2 className="h-8 w-8 text-slate-400 animate-spin" />
+                <span className="text-sm text-slate-500">Uploading...</span>
+              </>
+            ) : (
+              <>
+                <Upload className="h-8 w-8 text-slate-400" />
+                <span className="text-sm text-slate-500">Click to upload image</span>
+                <span className="text-xs text-slate-400">JPG, PNG, GIF, WebP, SVG (max 10MB)</span>
+              </>
+            )}
+          </div>
+        )}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*,.heic,.heif"
+          onChange={handleFileSelect}
+          className="hidden"
+        />
+      </div>
+    </div>
+  );
+}
+
 function CrudSection({ title, resource, fields, token, icon: Icon }) {
   const [items, setItems] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
