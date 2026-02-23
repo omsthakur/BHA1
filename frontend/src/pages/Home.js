@@ -46,7 +46,7 @@ export default function Home() {
             <div className="animate-fade-in-up">
               <div className="flex items-center gap-2 mb-6">
                 <div className="h-px w-8 bg-amber-400" />
-                <span className="text-xs font-medium uppercase tracking-widest text-amber-400">Affiliated with UT Austin's Healthcare Administration Minor</span>
+                <span className="text-xs font-medium uppercase tracking-widest text-amber-400">Official Student Org — Healthcare Innovation Initiative Minor, UT Austin</span>
               </div>
               <h1
                 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]"
