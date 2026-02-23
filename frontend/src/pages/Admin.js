@@ -386,7 +386,9 @@ export default function Admin() {
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="Texas BHA" className="h-8 w-8 rounded-full bg-[#0F172A] p-1" />
+            <div className="h-8 w-8 rounded-full bg-[#0F172A] overflow-hidden flex items-center justify-center">
+              <img src={LOGO_URL} alt="Texas BHA" className="h-[200%] w-[200%] object-contain mix-blend-screen" />
+            </div>
             <span className="font-bold text-[#0F172A] text-sm" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Texas BHA <span className="text-slate-400 font-normal">Admin</span>
             </span>
