@@ -44,6 +44,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-xs font-semibold uppercase tracking-widest text-amber-400">Est. 2019</span>
+                <span className="text-slate-500">•</span>
+                <span className="text-xs font-medium uppercase tracking-widest text-slate-400">UT Austin</span>
+              </div>
               <h1
                 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.08]"
                 style={{ fontFamily: 'Manrope, sans-serif' }}
