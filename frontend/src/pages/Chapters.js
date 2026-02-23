@@ -22,7 +22,18 @@ const staticChapters = {
   ]
 };
 
-function TexasMap({ chapters }) {
+function TexasMap() {
+  // Fixed positions for all chapters
+  const chapterPositions = [
+    { name: "UT Austin", x: 200, y: 240, type: "college" },
+    { name: "Texas A&M", x: 240, y: 220, type: "college" },
+    { name: "Prosper HS", x: 220, y: 120, type: "high_school" },
+    { name: "Bridgeland HS", x: 280, y: 200, type: "high_school" },
+    { name: "Wylie HS", x: 250, y: 140, type: "high_school" },
+    { name: "Round Rock HS", x: 195, y: 220, type: "high_school" },
+    { name: "Travis HS", x: 205, y: 250, type: "high_school" },
+  ];
+
   return (
     <div className="relative bg-slate-50 rounded-2xl p-8 border border-slate-100">
       <svg viewBox="0 0 400 400" className="w-full max-w-md mx-auto" fill="none">
@@ -34,27 +45,39 @@ function TexasMap({ chapters }) {
           strokeWidth="2"
         />
         {/* Chapter dots */}
-        {chapters.map((ch, i) => {
-          const positions = [
-            { x: 200, y: 200 },
-            { x: 160, y: 260 },
-            { x: 280, y: 220 },
-            { x: 180, y: 300 },
-            { x: 260, y: 240 },
-          ];
-          const pos = positions[i % positions.length];
-          return (
-            <g key={i}>
-              <circle cx={pos.x} cy={pos.y} r="8" fill="#0F172A" className="animate-pulse" />
-              <circle cx={pos.x} cy={pos.y} r="4" fill="white" />
-              <text x={pos.x + 14} y={pos.y + 4} fill="#0F172A" fontSize="10" fontWeight="600" fontFamily="Manrope, sans-serif">
-                {ch.university?.split(' ')[0]}
-              </text>
-            </g>
-          );
-        })}
+        {chapterPositions.map((ch, i) => (
+          <g key={i}>
+            <circle 
+              cx={ch.x} 
+              cy={ch.y} 
+              r={ch.type === "college" ? "10" : "7"} 
+              fill={ch.type === "college" ? "#0F172A" : "#BF5700"} 
+              className="animate-pulse" 
+            />
+            <circle cx={ch.x} cy={ch.y} r={ch.type === "college" ? "5" : "3"} fill="white" />
+            <text 
+              x={ch.x + (ch.type === "college" ? 14 : 10)} 
+              y={ch.y + 4} 
+              fill="#0F172A" 
+              fontSize={ch.type === "college" ? "10" : "8"} 
+              fontWeight="600" 
+              fontFamily="Manrope, sans-serif"
+            >
+              {ch.name}
+            </text>
+          </g>
+        ))}
       </svg>
-      <p className="text-center text-slate-400 text-sm mt-4">Chapter locations across Texas</p>
+      <div className="flex justify-center gap-6 mt-4">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-[#0F172A]" />
+          <span className="text-xs text-slate-500">College Chapters</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full bg-[#BF5700]" />
+          <span className="text-xs text-slate-500">High School Chapters</span>
+        </div>
+      </div>
     </div>
   );
 }
