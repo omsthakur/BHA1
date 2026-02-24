@@ -3,90 +3,94 @@ import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Calendar, Users, ExternalLink, ArrowRight, User, GraduationCap, School } from "lucide-react";
+import { MapPin, ArrowRight, User, GraduationCap, School } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-// Static chapter data for high schools and colleges
-const staticChapters = {
-  highSchools: [
-    { name: "Prosper High School", location: "Prosper, TX", type: "high_school" },
-    { name: "Bridgeland High School", location: "Cypress, TX", type: "high_school" },
-    { name: "Wylie High School", location: "Wylie, TX", type: "high_school" },
-    { name: "Round Rock High School", location: "Round Rock, TX", type: "high_school" },
-    { name: "Travis High School", location: "Austin, TX", type: "high_school" },
-  ],
-  colleges: [
-    { name: "Texas A&M University", location: "College Station, TX", type: "college" },
-  ]
-};
+// Fix default Leaflet icon issue with bundlers
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+});
 
-function TexasMap() {
-  // Chapter data with positions as percentages for responsive positioning
-  const chapters = [
-    // North Texas / Dallas area
-    { name: "Prosper", x: "52%", y: "18%", type: "high_school" },
-    { name: "Wylie", x: "60%", y: "22%", type: "high_school" },
-    // Central Texas / Austin area  
-    { name: "Round Rock", x: "42%", y: "55%", type: "high_school" },
-    { name: "UT Austin", x: "45%", y: "62%", type: "college" },
-    { name: "Travis", x: "40%", y: "70%", type: "high_school" },
-    { name: "Texas A&M", x: "58%", y: "58%", type: "college" },
-    // Houston area
-    { name: "Bridgeland", x: "72%", y: "68%", type: "high_school" },
-  ];
+// Custom marker icons
+const collegeIcon = new L.DivIcon({
+  className: "custom-marker",
+  html: `<div style="width:28px;height:28px;border-radius:50%;background:#0F172A;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
+    <div style="width:8px;height:8px;border-radius:50%;background:#fff;"></div>
+  </div>`,
+  iconSize: [28, 28],
+  iconAnchor: [14, 14],
+  popupAnchor: [0, -16],
+});
+
+const highSchoolIcon = new L.DivIcon({
+  className: "custom-marker",
+  html: `<div style="width:22px;height:22px;border-radius:50%;background:#BF5700;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
+    <div style="width:6px;height:6px;border-radius:50%;background:#fff;"></div>
+  </div>`,
+  iconSize: [22, 22],
+  iconAnchor: [11, 11],
+  popupAnchor: [0, -14],
+});
+
+function TexasMap({ chapters }) {
+  const texasCenter = [31.0, -99.0];
+
+  if (!chapters || chapters.length === 0) {
+    return (
+      <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm h-[500px] flex items-center justify-center">
+        <p className="text-slate-400 text-sm">Loading map...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="relative bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-      {/* Map Container */}
-      <div className="relative max-w-lg mx-auto">
-        {/* Texas SVG */}
-        <svg viewBox="50 30 350 380" className="w-full" fill="none">
-          <path
-            d="M100,50 L120,50 L140,45 L160,42 L180,40 L200,38 L220,38 L240,40 L260,42 L280,48 L300,55 
-               L315,70 L325,90 L335,110 L340,130 L345,160 L350,190 L355,220 L358,250 L355,280 
-               L350,310 L340,335 L325,355 L305,370 L280,380 L250,385 L220,382 L190,378 L160,370 
-               L135,358 L115,340 L100,318 L90,290 L82,260 L78,230 L76,200 L78,170 L84,140 
-               L92,110 L100,80 Z"
-            fill="#F1F5F9"
-            stroke="#CBD5E1"
-            strokeWidth="2"
-          />
-        </svg>
-        
-        {/* Chapter Markers Overlay */}
-        <div className="absolute inset-0">
-          {chapters.map((ch, i) => (
-            <div 
-              key={i}
-              className="absolute flex items-center group"
-              style={{ left: ch.x, top: ch.y, transform: 'translate(-50%, -50%)' }}
+    <div data-testid="texas-map" className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+      <MapContainer
+        center={texasCenter}
+        zoom={6}
+        scrollWheelZoom={false}
+        style={{ height: "480px", width: "100%" }}
+        className="z-0"
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+        />
+        {chapters.map((ch) => {
+          if (!ch.lat || !ch.lng) return null;
+          const isCollege = ch.chapter_type === "college";
+          return (
+            <Marker
+              key={ch.id}
+              position={[ch.lat, ch.lng]}
+              icon={isCollege ? collegeIcon : highSchoolIcon}
             >
-              {/* Marker */}
-              <div className={`
-                relative flex items-center justify-center rounded-full border-2 border-white shadow-md
-                ${ch.type === "college" 
-                  ? `w-6 h-6 ${ch.name === "UT Austin" ? "bg-[#BF5700]" : "bg-[#0F172A]"}` 
-                  : "w-4 h-4 bg-[#BF5700]"
-                }
-              `}>
-                <div className={`rounded-full bg-white ${ch.type === "college" ? "w-2 h-2" : "w-1.5 h-1.5"}`} />
-              </div>
-              {/* Label */}
-              <span className={`
-                ml-1 px-1.5 py-0.5 bg-white/90 rounded text-[10px] font-semibold text-[#0F172A] whitespace-nowrap shadow-sm
-                ${ch.type === "college" ? "font-bold" : ""}
-              `}>
-                {ch.name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      
+              <Popup>
+                <div className="text-center min-w-[160px]">
+                  <p className="font-bold text-sm text-[#0F172A] mb-0.5">{ch.name}</p>
+                  <p className="text-xs text-slate-500">{ch.location}</p>
+                  <span className={`inline-block mt-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                    isCollege ? "bg-[#0F172A] text-white" : "bg-[#BF5700] text-white"
+                  }`}>
+                    {isCollege ? "College" : "High School"}
+                  </span>
+                </div>
+              </Popup>
+            </Marker>
+          );
+        })}
+      </MapContainer>
+
       {/* Legend */}
-      <div className="flex justify-center gap-8 mt-4 pt-4 border-t border-slate-100">
+      <div className="flex justify-center gap-8 py-3 border-t border-slate-100 bg-slate-50/50">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded-full bg-[#0F172A] flex items-center justify-center border-2 border-white shadow-sm">
             <div className="w-2 h-2 rounded-full bg-white" />
@@ -111,14 +115,13 @@ export default function Chapters() {
   useEffect(() => {
     axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
     axios.get(`${API}/team`).then(r => {
-      const chairs = r.data.filter(m => 
-        m.category === 'Expansion Chair'
-      );
+      const chairs = r.data.filter(m => m.category === "Expansion Chair");
       setExpansionChairs(chairs);
     }).catch(console.error);
   }, []);
 
-  const totalChapters = staticChapters.highSchools.length + staticChapters.colleges.length + 1; // +1 for UT Austin
+  const collegeChapters = chapters.filter(c => c.chapter_type === "college");
+  const hsChapters = chapters.filter(c => c.chapter_type === "high_school");
 
   return (
     <div>
@@ -182,7 +185,7 @@ export default function Chapters() {
               <div className="col-span-full text-center py-8 bg-white rounded-xl border border-dashed border-slate-200">
                 <User className="h-12 w-12 text-slate-300 mx-auto mb-3" />
                 <p className="text-slate-500 text-sm">Expansion chairs will appear here</p>
-                <p className="text-slate-400 text-xs mt-1">Add team members with "Expansion" in their role via admin panel</p>
+                <p className="text-slate-400 text-xs mt-1">Add team members with "Expansion Chair" category via admin panel</p>
               </div>
             )}
           </div>
@@ -192,8 +195,8 @@ export default function Chapters() {
       {/* Map Section */}
       <section className="py-20 bg-white">
         <div className="container-main">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            <div className="lg:col-span-2">
               <h2 className="text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 Chapters Across Texas
               </h2>
@@ -202,7 +205,7 @@ export default function Chapters() {
               </p>
               <div className="mt-6 flex items-center gap-4">
                 <div className="text-center">
-                  <p className="text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>{totalChapters}</p>
+                  <p className="text-3xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>{chapters.length}</p>
                   <p className="text-slate-400 text-sm">Active Chapters</p>
                 </div>
                 <div className="w-px h-12 bg-slate-200" />
@@ -212,7 +215,9 @@ export default function Chapters() {
                 </div>
               </div>
             </div>
-            <TexasMap />
+            <div className="lg:col-span-3">
+              <TexasMap chapters={chapters} />
+            </div>
           </div>
         </div>
       </section>
@@ -225,45 +230,28 @@ export default function Chapters() {
             <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>College Chapters</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* UT Austin - Main Chapter */}
-            <Card className="bg-white border-2 border-[#BF5700] shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <Badge className="bg-[#BF5700] text-white text-xs mb-2">Founding Chapter</Badge>
-                    <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                      UT Austin
-                    </h3>
-                    <p className="text-slate-400 text-sm">University of Texas at Austin</p>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-[#BF5700] flex items-center justify-center shrink-0">
-                    <GraduationCap className="h-4 w-4 text-white" />
-                  </div>
-                </div>
-                <p className="text-slate-500 text-sm mt-4 leading-relaxed">The founding chapter of Texas BHA, home to the HEALTHCARE REFORM & INNOVATION minor.</p>
-                <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-                  <MapPin className="h-3.5 w-3.5 text-slate-400" />
-                  <span>Austin, TX</span>
-                </div>
-              </CardContent>
-            </Card>
-            
-            {/* Texas A&M */}
-            {staticChapters.colleges.map((chapter, idx) => (
-              <Card key={idx} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+            {collegeChapters.map((chapter, idx) => (
+              <Card key={chapter.id} data-testid={`college-chapter-${idx}`} className={`bg-white shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 ${
+                chapter.name === "UT Austin" ? "border-2 border-[#BF5700]" : "border border-slate-100"
+              }`}>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
+                      {chapter.name === "UT Austin" && (
+                        <Badge className="bg-[#BF5700] text-white text-xs mb-2">Founding Chapter</Badge>
+                      )}
                       <h3 className="font-bold text-lg text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-                        {chapter.name.replace(' University', '')}
+                        {chapter.name}
                       </h3>
-                      <p className="text-slate-400 text-sm">{chapter.name}</p>
+                      <p className="text-slate-400 text-sm">{chapter.university}</p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-[#0F172A] flex items-center justify-center shrink-0">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                      chapter.name === "UT Austin" ? "bg-[#BF5700]" : "bg-[#0F172A]"
+                    }`}>
                       <GraduationCap className="h-4 w-4 text-white" />
                     </div>
                   </div>
-                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">Expanding the Texas BHA mission to Aggieland.</p>
+                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">{chapter.description}</p>
                   <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
                     <MapPin className="h-3.5 w-3.5 text-slate-400" />
                     <span>{chapter.location}</span>
@@ -279,8 +267,8 @@ export default function Chapters() {
             <h2 className="text-2xl font-bold text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>High School Chapters</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {staticChapters.highSchools.map((chapter, idx) => (
-              <Card key={idx} data-testid={`hs-chapter-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+            {hsChapters.map((chapter, idx) => (
+              <Card key={chapter.id} data-testid={`hs-chapter-${idx}`} className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div>
@@ -293,7 +281,7 @@ export default function Chapters() {
                       <School className="h-4 w-4 text-white" />
                     </div>
                   </div>
-                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">Introducing healthcare business to the next generation.</p>
+                  <p className="text-slate-500 text-sm mt-4 leading-relaxed">{chapter.description}</p>
                   <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
                     <MapPin className="h-3.5 w-3.5 text-slate-400" />
                     <span>{chapter.location}</span>
