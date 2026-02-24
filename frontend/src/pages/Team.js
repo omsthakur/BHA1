@@ -79,6 +79,63 @@ export default function Team() {
         </div>
       </section>
 
+      {/* Marketing Chair */}
+      {marketingChairs.length > 0 && (
+        <section data-testid="marketing-chair" className="py-16 lg:py-20 bg-slate-50">
+          <div className="container-main">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Marketing</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              Marketing Chair
+            </h2>
+            <p className="text-slate-500 text-sm mt-2 max-w-xl">Leading our branding, social media, and communications strategy.</p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+              {marketingChairs.map((member, idx) => (
+                <MemberCard key={member.id || idx} member={member} idx={`marketing-${idx}`} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Expansion Chair */}
+      {expansionChairs.length > 0 && (
+        <section data-testid="expansion-chair" className="py-16 lg:py-20 bg-white">
+          <div className="container-main">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Growth</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              Expansion Chair
+            </h2>
+            <p className="text-slate-500 text-sm mt-2 max-w-xl">Driving chapter growth at universities across the state.</p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+              {expansionChairs.map((member, idx) => (
+                <MemberCard key={member.id || idx} member={member} idx={`expansion-${idx}`} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Committee Leads */}
+      {committeeLeads.length > 0 && (
+        <section data-testid="committee-leads" className="py-16 lg:py-20 bg-slate-50">
+          <div className="container-main">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Committee Leadership</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              Committee Leads
+            </h2>
+            <p className="text-slate-500 text-sm mt-2 max-w-xl">Leading our specialized committees in consulting, policy, and community initiatives.</p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+              {committeeLeads.map((member, idx) => (
+                <MemberCard key={member.id || idx} member={member} idx={`committee-${idx}`} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Photo Banner */}
       <section className="relative h-48 overflow-hidden">
         <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Team" className="w-full h-full object-cover" />
