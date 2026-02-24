@@ -228,6 +228,8 @@ function CrudSection({ title, resource, fields, token, icon: Icon }) {
           payload[f.key] = Number(formData[f.key]) || 0;
         } else if (f.type === "boolean") {
           payload[f.key] = formData[f.key] === "true" || formData[f.key] === true;
+        } else if (f.key === "lat" || f.key === "lng") {
+          payload[f.key] = parseFloat(formData[f.key]) || 0;
         } else {
           payload[f.key] = formData[f.key] || "";
         }
