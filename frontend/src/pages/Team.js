@@ -16,7 +16,9 @@ export default function Team() {
   }, []);
 
   const execBoard = members.filter(m => m.category === "Executive Board");
-  const committeLeads = members.filter(m => m.category === "Committee Leads");
+  const marketingChairs = members.filter(m => m.category === "Marketing Chair");
+  const expansionChairs = members.filter(m => m.category === "Expansion Chair");
+  const committeeLeads = members.filter(m => m.category === "Committee Leads");
 
   const MemberCard = ({ member, idx }) => (
     <Card
