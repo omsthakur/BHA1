@@ -1,77 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Team() {
   const [members, setMembers] = useState([]);
-  const execScrollRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/team`).then(r => setMembers(r.data)).catch(console.error);
   }, []);
 
   const execBoard = members.filter(m => m.category === "Executive Board");
-  const scroll = (ref, direction) => {
-    if (ref.current) {
-      ref.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const MemberCard = ({ member, idx }) => (
-    <Card
-      data-testid={`team-member-${idx}`}
-      className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex-shrink-0 w-[240px]"
-    >
-      <div className="aspect-square bg-slate-50 flex items-center justify-center overflow-hidden">
-        {member.photo_url ? (
-          <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
-        ) : (
-          <div className="flex flex-col items-center gap-2 text-slate-300">
-            <User className="h-16 w-16" />
-            <span className="text-[10px] uppercase tracking-wider text-slate-300">Upload Photo</span>
-          </div>
-        )}
-      </div>
-      <CardContent className="p-4 text-center">
-        <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
-          {member.name}
-        </h3>
-        <p className="text-xs text-slate-400 mt-0.5 font-medium uppercase tracking-wide">{member.role}</p>
-        {member.bio && (
-          <p className="text-slate-500 text-xs mt-2 leading-relaxed line-clamp-2">{member.bio}</p>
-        )}
-      </CardContent>
-    </Card>
-  );
-
-  const ScrollArrows = ({ scrollRef, count, testPrefix }) => (
-    count > 4 ? (
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => scroll(scrollRef, "left")}
-          className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
-          data-testid={`${testPrefix}-scroll-left`}
-        >
-          <ChevronLeft className="h-5 w-5 text-slate-600" />
-        </button>
-        <button
-          onClick={() => scroll(scrollRef, "right")}
-          className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
-          data-testid={`${testPrefix}-scroll-right`}
-        >
-          <ChevronRight className="h-5 w-5 text-slate-600" />
-        </button>
-      </div>
-    ) : null
-  );
 
   return (
     <div>
@@ -83,7 +26,7 @@ export default function Team() {
             Meet Our Team
           </h1>
           <p className="text-slate-300 mt-4 text-base max-w-2xl">
-            The dedicated leaders driving Texas BHA's mission forward across our executive board and committee leadership.
+            The dedicated leaders driving Texas BHA's mission forward.
           </p>
         </div>
       </section>
@@ -91,22 +34,39 @@ export default function Team() {
       {/* Executive Board */}
       <section data-testid="executive-board" className="py-16 lg:py-20 bg-white">
         <div className="container-main">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Leadership</p>
-            <ScrollArrows scrollRef={execScrollRef} count={execBoard.length} testPrefix="exec" />
-          </div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Leadership</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Executive Board
           </h2>
           <p className="text-slate-500 text-sm mt-2 max-w-xl mb-8">The executive team responsible for Texas BHA's strategic direction and organizational operations.</p>
 
-          <div
-            ref={execScrollRef}
-            className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
             {execBoard.map((member, idx) => (
-              <MemberCard key={member.id || idx} member={member} idx={idx} />
+              <Card
+                key={member.id || idx}
+                data-testid={`team-member-${idx}`}
+                className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden"
+              >
+                <div className="aspect-square bg-slate-50 flex items-center justify-center overflow-hidden">
+                  {member.photo_url ? (
+                    <img src={member.photo_url} alt={member.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-slate-300">
+                      <User className="h-16 w-16" />
+                      <span className="text-[10px] uppercase tracking-wider text-slate-300">Upload Photo</span>
+                    </div>
+                  )}
+                </div>
+                <CardContent className="p-4 text-center">
+                  <h3 className="font-semibold text-[15px] text-[#0F172A]" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                    {member.name}
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-0.5 font-medium uppercase tracking-wide">{member.role}</p>
+                  {member.bio && (
+                    <p className="text-slate-500 text-xs mt-2 leading-relaxed line-clamp-2">{member.bio}</p>
+                  )}
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
