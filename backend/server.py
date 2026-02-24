@@ -72,7 +72,7 @@ class GalleryItem(BaseModel):
 class Chapter(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    university: str
+    university: str = ""
     location: str
     founding_date: str = ""
     leadership: List[str] = []
@@ -80,6 +80,7 @@ class Chapter(BaseModel):
     signup_link: str = ""
     lat: float = 0.0
     lng: float = 0.0
+    chapter_type: str = "college"
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 class Opportunity(BaseModel):
