@@ -10,7 +10,6 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 export default function Team() {
   const [members, setMembers] = useState([]);
   const execScrollRef = useRef(null);
-  const leadsScrollRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/team`).then(r => setMembers(r.data)).catch(console.error);
