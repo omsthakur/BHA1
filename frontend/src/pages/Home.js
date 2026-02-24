@@ -149,7 +149,7 @@ export default function Home() {
                 className="rounded-2xl shadow-md w-full h-72 lg:h-80 object-cover"
               />
               <div className="absolute -bottom-5 -left-5 bg-[#0F172A] text-white rounded-xl p-5 shadow-lg">
-                <p className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Est. 2022</p>
+                <p className="text-2xl font-bold tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>Est. 2019</p>
                 <p className="text-slate-400 text-xs mt-0.5">Austin, Texas</p>
               </div>
             </div>
