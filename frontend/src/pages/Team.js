@@ -1,29 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { User, ArrowRight } from "lucide-react";
+import { User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Team() {
   const [members, setMembers] = useState([]);
+  const execScrollRef = useRef(null);
+  const leadsScrollRef = useRef(null);
 
   useEffect(() => {
     axios.get(`${API}/team`).then(r => setMembers(r.data)).catch(console.error);
   }, []);
 
   const execBoard = members.filter(m => m.category === "Executive Board");
-  const marketingChairs = members.filter(m => m.category === "Marketing Chair");
-  const expansionChairs = members.filter(m => m.category === "Expansion Chair");
   const committeeLeads = members.filter(m => m.category === "Committee Leads");
+
+  const scroll = (ref, direction) => {
+    if (ref.current) {
+      ref.current.scrollBy({
+        left: direction === "left" ? -300 : 300,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const MemberCard = ({ member, idx }) => (
     <Card
       data-testid={`team-member-${idx}`}
-      className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden"
+      className="bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 overflow-hidden flex-shrink-0 w-[240px]"
     >
       <div className="aspect-square bg-slate-50 flex items-center justify-center overflow-hidden">
         {member.photo_url ? (
@@ -41,10 +49,31 @@ export default function Team() {
         </h3>
         <p className="text-xs text-slate-400 mt-0.5 font-medium uppercase tracking-wide">{member.role}</p>
         {member.bio && (
-          <p className="text-slate-500 text-xs mt-2 leading-relaxed">{member.bio}</p>
+          <p className="text-slate-500 text-xs mt-2 leading-relaxed line-clamp-2">{member.bio}</p>
         )}
       </CardContent>
     </Card>
+  );
+
+  const ScrollArrows = ({ scrollRef, count, testPrefix }) => (
+    count > 4 ? (
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => scroll(scrollRef, "left")}
+          className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
+          data-testid={`${testPrefix}-scroll-left`}
+        >
+          <ChevronLeft className="h-5 w-5 text-slate-600" />
+        </button>
+        <button
+          onClick={() => scroll(scrollRef, "right")}
+          className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 transition-all"
+          data-testid={`${testPrefix}-scroll-right`}
+        >
+          <ChevronRight className="h-5 w-5 text-slate-600" />
+        </button>
+      </div>
+    ) : null
   );
 
   return (
@@ -65,13 +94,20 @@ export default function Team() {
       {/* Executive Board */}
       <section data-testid="executive-board" className="py-16 lg:py-20 bg-white">
         <div className="container-main">
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Leadership</p>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Leadership</p>
+            <ScrollArrows scrollRef={execScrollRef} count={execBoard.length} testPrefix="exec" />
+          </div>
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
             Executive Board
           </h2>
-          <p className="text-slate-500 text-sm mt-2 max-w-xl">The executive team responsible for Texas BHA's strategic direction and organizational operations.</p>
+          <p className="text-slate-500 text-sm mt-2 max-w-xl mb-8">The executive team responsible for Texas BHA's strategic direction and organizational operations.</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+          <div
+            ref={execScrollRef}
+            className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {execBoard.map((member, idx) => (
               <MemberCard key={member.id || idx} member={member} idx={idx} />
             ))}
@@ -79,55 +115,24 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Marketing Chair */}
-      {marketingChairs.length > 0 && (
-        <section data-testid="marketing-chair" className="py-16 lg:py-20 bg-slate-50">
-          <div className="container-main">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Marketing</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-              Marketing Chair
-            </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-xl">Leading our branding, social media, and communications strategy.</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
-              {marketingChairs.map((member, idx) => (
-                <MemberCard key={member.id || idx} member={member} idx={`marketing-${idx}`} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Expansion Chair */}
-      {expansionChairs.length > 0 && (
-        <section data-testid="expansion-chair" className="py-16 lg:py-20 bg-white">
-          <div className="container-main">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Growth</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-              Expansion Chair
-            </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-xl">Driving chapter growth at universities across the state.</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
-              {expansionChairs.map((member, idx) => (
-                <MemberCard key={member.id || idx} member={member} idx={`expansion-${idx}`} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Committee Leads */}
       {committeeLeads.length > 0 && (
         <section data-testid="committee-leads" className="py-16 lg:py-20 bg-slate-50">
           <div className="container-main">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Committee Leadership</p>
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Committee Leadership</p>
+              <ScrollArrows scrollRef={leadsScrollRef} count={committeeLeads.length} testPrefix="leads" />
+            </div>
             <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
               Committee Leads
             </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-xl">Leading our specialized committees in consulting, policy, and community initiatives.</p>
+            <p className="text-slate-500 text-sm mt-2 max-w-xl mb-8">Leading our specialized committees in consulting, policy, and community initiatives.</p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
+            <div
+              ref={leadsScrollRef}
+              className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
               {committeeLeads.map((member, idx) => (
                 <MemberCard key={member.id || idx} member={member} idx={`committee-${idx}`} />
               ))}
