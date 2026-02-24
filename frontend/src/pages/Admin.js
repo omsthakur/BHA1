@@ -446,8 +446,11 @@ const galleryFields = [
 
 const chapterFields = [
   { key: "name", label: "Chapter Name", type: "text" },
-  { key: "university", label: "University", type: "text" },
-  { key: "location", label: "Location", type: "text" },
+  { key: "university", label: "University / School", type: "text" },
+  { key: "location", label: "Location (City, TX)", type: "text" },
+  { key: "chapter_type", label: "Chapter Type", type: "select", options: ["college", "high_school"] },
+  { key: "lat", label: "Latitude", type: "text", placeholder: "e.g. 30.2849" },
+  { key: "lng", label: "Longitude", type: "text", placeholder: "e.g. -97.7341" },
   { key: "founding_date", label: "Founding Date", type: "text", placeholder: "YYYY-MM-DD" },
   { key: "leadership", label: "Leadership", type: "array", hint: "Comma-separated" },
   { key: "description", label: "Description", type: "textarea" },
