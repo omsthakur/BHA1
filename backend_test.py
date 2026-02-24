@@ -4,7 +4,7 @@ from datetime import datetime
 import json
 
 class TexasBHAAPITester:
-    def __init__(self, base_url="https://texasbha-dev.preview.emergentagent.com/api"):
+    def __init__(self, base_url="https://bha-portal-dev.preview.emergentagent.com/api"):
         self.base_url = base_url
         self.token = None
         self.tests_run = 0
@@ -265,7 +265,7 @@ class TexasBHAAPITester:
 def main():
     """Main testing function"""
     print("🚀 Starting Texas BHA API Testing Suite")
-    print(f"Target URL: https://texasbha-dev.preview.emergentagent.com/api")
+    print(f"Target URL: https://bha-portal-dev.preview.emergentagent.com/api")
     
     tester = TexasBHAAPITester()
     
