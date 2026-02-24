@@ -17,8 +17,6 @@ export default function Team() {
   }, []);
 
   const execBoard = members.filter(m => m.category === "Executive Board");
-  const committeeLeads = members.filter(m => m.category === "Committee Leads");
-
   const scroll = (ref, direction) => {
     if (ref.current) {
       ref.current.scrollBy({
@@ -114,32 +112,6 @@ export default function Team() {
           </div>
         </div>
       </section>
-
-      {/* Committee Leads */}
-      {committeeLeads.length > 0 && (
-        <section data-testid="committee-leads" className="py-16 lg:py-20 bg-slate-50">
-          <div className="container-main">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-xs font-semibold uppercase tracking-widest text-slate-400">Committee Leadership</p>
-              <ScrollArrows scrollRef={leadsScrollRef} count={committeeLeads.length} testPrefix="leads" />
-            </div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight" style={{ fontFamily: 'Manrope, sans-serif' }}>
-              Committee Leads
-            </h2>
-            <p className="text-slate-500 text-sm mt-2 max-w-xl mb-8">Leading our specialized committees in consulting, policy, and community initiatives.</p>
-
-            <div
-              ref={leadsScrollRef}
-              className="flex gap-5 overflow-x-auto pb-4 scroll-smooth"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {committeeLeads.map((member, idx) => (
-                <MemberCard key={member.id || idx} member={member} idx={`committee-${idx}`} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Photo Banner */}
       <section className="relative h-48 overflow-hidden">
