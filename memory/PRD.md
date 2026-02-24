@@ -49,19 +49,25 @@ Build a professional, modern website for Texas Business Healthcare Association w
 
 ### Phase 3 (Feb 2026 - Latest Session)
 - [x] Admin panel file upload system (react-dropzone + /api/upload endpoint)
-- [x] Custom Texas SVG map with chapter markers on Expansion page
 - [x] Custom Instagram feed display on Gallery page (API-free, links to @tx_bha)
 - [x] Consulting page: both Ongoing and Completed projects with horizontal scrolling
 - [x] Team management: Marketing Chair and Expansion Chair categories
-- [x] "Est. 2019" on homepage hero section
 - [x] Team page: displays all 4 categories (Executive Board, Marketing Chair, Expansion Chair, Committee Leads)
 
 ### Verification (Feb 23, 2026)
 - [x] Instagram link verified: https://www.instagram.com/tx_bha/
-- [x] "Est. 2019" confirmed on homepage, not on Chapters page
-- [x] Rachel Adams → Marketing Chair, Michael Chang → Expansion Chair (fixed)
+- [x] Rachel Adams -> Marketing Chair, Michael Chang -> Expansion Chair (fixed)
 - [x] Team page updated to show all role-based sections
-- [x] Full e2e testing: Backend 100%, Frontend 100%
+
+### Interactive Texas Map (Feb 24, 2026)
+- [x] Replaced crude hand-drawn SVG with real Leaflet/OpenStreetMap interactive map
+- [x] Added chapter_type field (college/high_school) to Chapter model
+- [x] Dynamic markers: navy for college, burnt orange for high school with clickable popups
+- [x] All chapter data loaded dynamically from /api/chapters (no hardcoded data)
+- [x] Admin panel updated with lat, lng, chapter_type fields for chapter management
+- [x] 10 chapters seeded: 5 college + 5 high school with accurate coordinates
+- [x] Removed "Est. 2019 / UT Austin" line from homepage hero section
+- [x] Full e2e testing: Backend 100% (30 tests), Frontend 100%
 
 ## Testing Results
 - Backend: 100% (19/19 API tests passing)
