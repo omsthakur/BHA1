@@ -109,16 +109,8 @@ function TexasMap({ chapters }) {
 }
 
 export default function Chapters() {
-  const [chapters, setChapters] = useState([]);
-  const [expansionChairs, setExpansionChairs] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/chapters`).then(r => setChapters(r.data)).catch(console.error);
-    axios.get(`${API}/team`).then(r => {
-      const chairs = r.data.filter(m => m.category === "Expansion Chair");
-      setExpansionChairs(chairs);
-    }).catch(console.error);
-  }, []);
+  const chapters = chaptersData;
+  const expansionChairs = teamMembers.filter(m => m.category === "Expansion Chair");
 
   const collegeChapters = chapters.filter(c => c.chapter_type === "college");
   const hsChapters = chapters.filter(c => c.chapter_type === "high_school");
