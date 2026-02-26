@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,8 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram, Send, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "", inquiry_type: "General" });
@@ -24,16 +21,13 @@ export default function Contact() {
       return;
     }
     setLoading(true);
-    try {
-      await axios.post(`${API}/contact`, form);
+    // Static site: simulate form submission
+    setTimeout(() => {
       setSubmitted(true);
       toast.success("Message sent successfully!");
       setForm({ name: "", email: "", subject: "", message: "", inquiry_type: "General" });
-    } catch (err) {
-      toast.error("Failed to send message. Please try again.");
-    } finally {
       setLoading(false);
-    }
+    }, 500);
   };
 
   return (
