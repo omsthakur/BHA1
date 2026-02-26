@@ -4,17 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { User, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { teamMembers } from "../data";
 
 export default function Team() {
-  const [members, setMembers] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/team`).then(r => setMembers(r.data)).catch(console.error);
-  }, []);
-
-  const execBoard = members.filter(m => m.category === "Executive Board");
+  const execBoard = teamMembers.filter(m => m.category === "Executive Board");
 
   return (
     <div>
