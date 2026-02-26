@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,30 +6,25 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Send, Calendar, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { newsletters as newslettersData } from "../data";
 
 export default function Newsletter() {
-  const [newsletters, setNewsletters] = useState([]);
+  const newsletters = newslettersData;
   const [form, setForm] = useState({ name: "", email: "" });
   const [loading, setLoading] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
-
-  useEffect(() => {
-    axios.get(`${API}/newsletters`).then(r => setNewsletters(r.data)).catch(console.error);
-  }, []);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!form.name || !form.email) { toast.error("Please fill in all fields."); return; }
     setLoading(true);
-    try {
-      const res = await axios.post(`${API}/newsletter/subscribe`, form);
-      toast.success(res.data.message);
+    // Static site: simulate subscription
+    setTimeout(() => {
+      toast.success("Thank you for subscribing!");
       setSubscribed(true);
       setForm({ name: "", email: "" });
-    } catch { toast.error("Failed to subscribe."); }
-    finally { setLoading(false); }
+      setLoading(false);
+    }, 500);
   };
 
   const featured = newsletters[0];
