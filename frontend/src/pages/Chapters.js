@@ -9,7 +9,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { chapters as chaptersData, teamMembers } from "../data";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 // Fix default Leaflet icon issue with bundlers
 delete L.Icon.Default.prototype._getIconUrl;
