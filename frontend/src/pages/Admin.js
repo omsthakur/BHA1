@@ -10,8 +10,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { LogOut, Plus, Pencil, Trash2, Users, FolderKanban, FileText, Image, MapPin, Briefcase, Megaphone, Mail, Settings as SettingsIcon, ArrowLeft, Newspaper, UserCircle, Upload, X, Loader2 } from "lucide-react";
+import { LogOut, Plus, Pencil, Trash2, Users, FolderKanban, FileText, Image, MapPin, Briefcase, Megaphone, Mail, Settings as SettingsIcon, ArrowLeft, Newspaper, UserCircle, Upload, X, Loader2, ZoomIn, ZoomOut, RotateCw, Crop } from "lucide-react";
 import { Link } from "react-router-dom";
+import Cropper from "react-easy-crop";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/0ijxjfll_image.png";
