@@ -51,7 +51,7 @@ function AdminLogin({ onLogin }) {
           <form onSubmit={handleLogin} className="space-y-4" data-testid="admin-login-form">
             <div>
               <Label className="text-sm font-medium text-slate-700">Email</Label>
-              <Input data-testid="admin-email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@texasbha.org" className="mt-1.5 bg-slate-50" required />
+              <Input data-testid="admin-email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter email" className="mt-1.5 bg-slate-50" required />
             </div>
             <div>
               <Label className="text-sm font-medium text-slate-700">Password</Label>
@@ -61,9 +61,6 @@ function AdminLogin({ onLogin }) {
               {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
-          <p className="text-xs text-slate-400 mt-4 text-center">
-            Default: admin@texasbha.org / TexasBHA2024!
-          </p>
           <Link to="/" className="block text-center mt-4">
             <Button variant="ghost" size="sm" className="text-slate-500 text-xs">
               <ArrowLeft className="mr-1 h-3 w-3" /> Back to Website
