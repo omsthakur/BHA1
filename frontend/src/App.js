@@ -50,7 +50,7 @@ function App() {
           </Route>
           <Route path="/admin" element={<Admin />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       <Toaster position="top-right" />
     </>
   );
