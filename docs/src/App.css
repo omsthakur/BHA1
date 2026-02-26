@@ -1,0 +1,49 @@
+/* Refined utility styles for Texas BHA */
+
+.section-padding {
+    @apply py-16 lg:py-20;
+}
+
+.container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.page-header {
+    @apply bg-[#0F172A] text-white py-16 lg:py-20;
+}
+
+.page-header h1 {
+    @apply text-4xl sm:text-5xl font-bold tracking-tight;
+}
+
+.page-header p {
+    @apply text-slate-300 mt-4 text-base max-w-2xl;
+}
+
+/* Card hover */
+.card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
+}
+
+/* Active nav link */
+.nav-link-active {
+    @apply text-[#0F172A] font-semibold;
+}
+
+/* Refined scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
