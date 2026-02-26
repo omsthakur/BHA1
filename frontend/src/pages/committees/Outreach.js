@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Megaphone, Instagram, Linkedin, Twitter, Globe, PenTool, BarChart3, ArrowRight, CheckCircle2, Calendar, Clock, MapPin, User } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { teamMembers } from "../../data";
 
 const upcomingEvents = [
   { title: "Spring Healthcare Business Conference", date: "March 28, 2025", time: "9:00 AM - 5:00 PM", location: "UT Austin, McCombs School of Business", desc: "Keynote speakers from major Texas health systems, panel discussions, and networking." },
@@ -17,16 +14,7 @@ const upcomingEvents = [
 ];
 
 export default function Outreach() {
-  const [chairs, setChairs] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/team`).then(r => {
-      const marketingChairs = r.data.filter(m => 
-        m.category === 'Marketing Chair'
-      );
-      setChairs(marketingChairs);
-    }).catch(console.error);
-  }, []);
+  const chairs = teamMembers.filter(m => m.category === "Marketing Chair");
 
   return (
     <div>
