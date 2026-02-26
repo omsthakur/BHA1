@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Heart, Briefcase, Award, Handshake, GraduationCap, Trophy, ArrowRight, ExternalLink, CheckCircle2, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { opportunities as opportunitiesData } from "../data";
 
 const typeIcons = {
   philanthropy: Heart, internship: Briefcase, volunteer: Award,
@@ -16,11 +13,7 @@ const typeIcons = {
 };
 
 export default function Opportunities() {
-  const [opportunities, setOpportunities] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/opportunities`).then(r => setOpportunities(r.data)).catch(console.error);
-  }, []);
+  const opportunities = opportunitiesData;
 
   const internships = opportunities.filter(o => o.type === "internship" || o.type === "competition" || o.type === "professional_development");
   const philanthropy = opportunities.filter(o => o.type === "philanthropy" || o.type === "volunteer");
