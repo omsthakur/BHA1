@@ -539,11 +539,11 @@ async def seed_database():
     logger.info("Seeding database with initial data...")
 
     # Admin user
-    admin_exists = await db.admins.find_one({"email": "admin@texasbha.org"})
+    admin_exists = await db.admins.find_one({"email": "uttxbha"})
     if not admin_exists:
         await db.admins.insert_one({
-            "email": "admin@texasbha.org",
-            "password_hash": pwd_context.hash("TexasBHA2024!"),
+            "email": "uttxbha",
+            "password_hash": pwd_context.hash("txbha@ut2526"),
             "role": "admin"
         })
 
