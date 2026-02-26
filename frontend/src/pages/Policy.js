@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FileText, Tag } from "lucide-react";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { policies as policiesData } from "../data";
 
 const statusColors = {
   "Active Research": "bg-blue-100 text-blue-700 border-blue-200",
@@ -14,11 +11,7 @@ const statusColors = {
 };
 
 export default function Policy() {
-  const [policies, setPolicies] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/policies`).then(r => setPolicies(r.data)).catch(console.error);
-  }, []);
+  const policies = policiesData;
 
   return (
     <div>
