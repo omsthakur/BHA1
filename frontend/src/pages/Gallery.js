@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, Instagram, Linkedin, Twitter, Camera, ExternalLink } from "lucide-react";
+import { galleryItems } from "../data";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const INSTAGRAM_USERNAME = "tx_bha";
 const INSTAGRAM_URL = "https://www.instagram.com/tx_bha/";
 
 const categories = ["All", "Events", "Meetings", "Socials", "Conferences"];
 
 export default function Gallery() {
-  const [items, setItems] = useState([]);
+  const items = galleryItems;
   const [filter, setFilter] = useState("All");
   const [selectedImage, setSelectedImage] = useState(null);
-
-  useEffect(() => {
-    axios.get(`${API}/gallery`).then(r => setItems(r.data)).catch(console.error);
-  }, []);
 
   const filtered = filter === "All" ? items : items.filter(item => item.category === filter);
 
