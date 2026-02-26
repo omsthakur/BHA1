@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, Users, BookOpen, Lightbulb, ChevronRight, Megaphone, GraduationCap, Building2 } from "lucide-react";
+import { committees as committeesData, announcements as announcementsData } from "../data";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_bha-collective/artifacts/0ijxjfll_image.png";
 
 export default function Home() {
-  const [committees, setCommittees] = useState([]);
-  const [announcements, setAnnouncements] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/committees`).then(r => setCommittees(r.data)).catch(console.error);
-    axios.get(`${API}/announcements`).then(r => setAnnouncements(r.data)).catch(console.error);
-  }, []);
+  const committees = committeesData;
+  const announcements = announcementsData.filter(a => a.active);
 
   return (
     <div>
