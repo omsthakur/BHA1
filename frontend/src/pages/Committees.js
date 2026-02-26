@@ -1,19 +1,12 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Users, Target, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { committees as committeesData } from "../data";
 
 export default function Committees() {
-  const [committees, setCommittees] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API}/committees`).then(r => setCommittees(r.data)).catch(console.error);
-  }, []);
+  const committees = committeesData;
 
   return (
     <div>
