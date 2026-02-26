@@ -75,44 +75,79 @@ function AdminLogin({ onLogin }) {
   );
 }
 
-// Image Upload Component
+// Helper: create cropped image from canvas
+function getCroppedImg(imageSrc, pixelCrop) {
+  return new Promise((resolve) => {
+    const image = new window.Image();
+    image.crossOrigin = "anonymous";
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = pixelCrop.width;
+      canvas.height = pixelCrop.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(
+        image,
+        pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height,
+        0, 0, pixelCrop.width, pixelCrop.height
+      );
+      canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.92);
+    };
+    image.src = imageSrc;
+  });
+}
+
+// Image Upload Component with Crop
 function ImageUploadField({ value, onChange, label }) {
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState(value || "");
+  const [cropSrc, setCropSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [aspect, setAspect] = useState(1);
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    setPreview(value || "");
-  }, [value]);
+  useEffect(() => { setPreview(value || ""); }, [value]);
 
-  const handleFileSelect = async (e) => {
+  const onCropComplete = useCallback((_, croppedPixels) => {
+    setCroppedAreaPixels(croppedPixels);
+  }, []);
+
+  const handleFileSelect = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    // Validate file type
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp', 'image/heic', 'image/heif'];
     if (!allowedTypes.includes(file.type) && !file.name.match(/\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|heic|heif)$/i)) {
-      toast.error("Please select a valid image file (JPG, PNG, GIF, WebP, SVG, etc.)");
+      toast.error("Please select a valid image file");
       return;
     }
-
-    // Check file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
       toast.error("File size must be less than 10MB");
       return;
     }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setCropSrc(reader.result);
+      setCrop({ x: 0, y: 0 });
+      setZoom(1);
+    };
+    reader.readAsDataURL(file);
+  };
 
+  const handleCropConfirm = async () => {
+    if (!cropSrc || !croppedAreaPixels) return;
     setUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
+      const blob = await getCroppedImg(cropSrc, croppedAreaPixels);
+      const formData = new FormData();
+      formData.append("file", blob, "cropped.jpg");
       const res = await axios.post(`${API}/upload`, formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
       const fullUrl = `${API.replace('/api', '')}${res.data.url}`;
       setPreview(fullUrl);
       onChange(fullUrl);
+      setCropSrc(null);
       toast.success("Image uploaded successfully");
     } catch (err) {
       console.error(err);
@@ -125,9 +160,7 @@ function ImageUploadField({ value, onChange, label }) {
   const handleRemove = () => {
     setPreview("");
     onChange("");
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   return (
@@ -136,49 +169,87 @@ function ImageUploadField({ value, onChange, label }) {
       <div className="mt-1.5">
         {preview ? (
           <div className="relative inline-block">
-            <img 
-              src={preview} 
-              alt="Preview" 
-              className="h-32 w-32 object-cover rounded-lg border border-slate-200"
-              onError={(e) => {
-                e.target.src = "https://via.placeholder.com/128?text=Image";
-              }}
-            />
-            <button
-              type="button"
-              onClick={handleRemove}
-              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
-            >
+            <img src={preview} alt="Preview" className="h-32 w-32 object-cover rounded-lg border border-slate-200"
+              onError={(e) => { e.target.src = "https://via.placeholder.com/128?text=Image"; }} />
+            <button type="button" onClick={handleRemove}
+              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
               <X className="h-4 w-4" />
             </button>
           </div>
         ) : (
-          <div 
-            onClick={() => !uploading && fileInputRef.current?.click()}
-            className={`w-full h-32 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-slate-400 hover:bg-slate-50 transition-all ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
-          >
+          <div onClick={() => !uploading && fileInputRef.current?.click()}
+            className={`w-full h-32 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center gap-2 cursor-pointer hover:border-slate-400 hover:bg-slate-50 transition-all ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
             {uploading ? (
-              <>
-                <Loader2 className="h-8 w-8 text-slate-400 animate-spin" />
-                <span className="text-sm text-slate-500">Uploading...</span>
-              </>
+              <><Loader2 className="h-8 w-8 text-slate-400 animate-spin" /><span className="text-sm text-slate-500">Uploading...</span></>
             ) : (
-              <>
-                <Upload className="h-8 w-8 text-slate-400" />
-                <span className="text-sm text-slate-500">Click to upload image</span>
-                <span className="text-xs text-slate-400">JPG, PNG, GIF, WebP, SVG (max 10MB)</span>
-              </>
+              <><Upload className="h-8 w-8 text-slate-400" /><span className="text-sm text-slate-500">Click to upload image</span><span className="text-xs text-slate-400">JPG, PNG, GIF, WebP (max 10MB)</span></>
             )}
           </div>
         )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*,.heic,.heif"
-          onChange={handleFileSelect}
-          className="hidden"
-        />
+        <input ref={fileInputRef} type="file" accept="image/*,.heic,.heif" onChange={handleFileSelect} className="hidden" />
       </div>
+
+      {/* Crop Dialog */}
+      <Dialog open={!!cropSrc} onOpenChange={(open) => { if (!open) setCropSrc(null); }}>
+        <DialogContent className="max-w-xl p-0 overflow-hidden" data-testid="crop-dialog">
+          <DialogHeader className="px-5 pt-5 pb-2">
+            <DialogTitle className="flex items-center gap-2" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              <Crop className="h-4 w-4" /> Crop & Adjust Image
+            </DialogTitle>
+          </DialogHeader>
+          <div className="relative w-full h-[360px] bg-slate-900">
+            {cropSrc && (
+              <Cropper
+                image={cropSrc}
+                crop={crop}
+                zoom={zoom}
+                aspect={aspect}
+                onCropChange={setCrop}
+                onZoomChange={setZoom}
+                onCropComplete={onCropComplete}
+                showGrid={true}
+              />
+            )}
+          </div>
+          <div className="px-5 py-3 space-y-3 border-t border-slate-100">
+            {/* Zoom */}
+            <div className="flex items-center gap-3">
+              <ZoomOut className="h-4 w-4 text-slate-400 shrink-0" />
+              <input type="range" min={1} max={3} step={0.05} value={zoom}
+                onChange={(e) => setZoom(Number(e.target.value))}
+                className="flex-1 h-1.5 accent-[#0F172A] cursor-pointer" data-testid="crop-zoom-slider" />
+              <ZoomIn className="h-4 w-4 text-slate-400 shrink-0" />
+            </div>
+            {/* Aspect Ratio */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-500 font-medium mr-1">Ratio:</span>
+              {[
+                { label: "Free", val: undefined },
+                { label: "1:1", val: 1 },
+                { label: "16:9", val: 16 / 9 },
+                { label: "4:3", val: 4 / 3 },
+                { label: "3:2", val: 3 / 2 },
+              ].map((r) => (
+                <button key={r.label} onClick={() => setAspect(r.val)}
+                  data-testid={`crop-ratio-${r.label.replace(/[:/]/g, '')}`}
+                  className={`px-2.5 py-1 rounded-full text-xs font-medium transition-all ${
+                    aspect === r.val ? "bg-[#0F172A] text-white" : "bg-slate-100 text-slate-500 hover:bg-slate-200"
+                  }`}>
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <DialogFooter className="px-5 pb-5 pt-2">
+            <Button variant="outline" onClick={() => setCropSrc(null)} className="rounded-full text-sm">Cancel</Button>
+            <Button onClick={handleCropConfirm} disabled={uploading}
+              className="bg-[#0F172A] hover:bg-[#1E293B] text-white rounded-full text-sm font-semibold"
+              data-testid="crop-confirm-btn">
+              {uploading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" />Uploading...</> : "Crop & Upload"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
