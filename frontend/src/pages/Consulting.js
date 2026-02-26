@@ -1,11 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Target, Settings, BarChart3, Shield, Cpu, Search, ArrowRight, CheckCircle2, Clock, ChevronLeft, ChevronRight } from "lucide-react";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { projects as projectsData, consultingServices } from "../data";
 
 const iconMap = {
   target: Target, settings: Settings, "bar-chart": BarChart3,
@@ -13,15 +11,10 @@ const iconMap = {
 };
 
 export default function Consulting() {
-  const [services, setServices] = useState([]);
-  const [projects, setProjects] = useState([]);
+  const services = consultingServices;
+  const projects = projectsData;
   const ongoingScrollRef = useRef(null);
   const completedScrollRef = useRef(null);
-
-  useEffect(() => {
-    axios.get(`${API}/consulting-services`).then(r => setServices(r.data)).catch(console.error);
-    axios.get(`${API}/projects`).then(r => setProjects(r.data)).catch(console.error);
-  }, []);
 
   const completedProjects = projects.filter(p => p.status === "completed");
   const ongoingProjects = projects.filter(p => p.status === "ongoing");
